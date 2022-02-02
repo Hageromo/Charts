@@ -1,4 +1,5 @@
-#List of endpoints:
+List of endpoints:
+
 http://localhost:8080/rest/all      Returns all users
 http://localhost:8080/rest/{user}   Returns user
 
