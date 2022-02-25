@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/rest")
+@CrossOrigin("*")   //Don't do that
 public class MainController {
 
     private final UserService userService;
