@@ -31,7 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/rest/delete/out/{user}/{id}", "/rest/{user}/in", "/rest/{user}/out", "/rest/{user}/out/month",
                         "/rest/{user}/in/month", "/rest/{user}/out/year", "/rest/{user}/in/year", "/rest/{user}/incomes",
                         "/rest/{user}/outcomes", "/rest/{user}/outcomes/month", "/rest/{user}/incomes/month", "/rest/{user}/outcomes/year",
-                        "/rest/{user}/incomes/year")
+                        "/rest/{user}/incomes/year", "/rest/{user}/unique/incomes", "/rest/{user}/unique/outcomes")
         .permitAll().anyRequest().authenticated();
 
 //        http.authorizeHttpRequests().anyRequest().permitAll();

@@ -248,6 +248,34 @@ public class UserService implements UserDetailsService {
         return sumOutcomesByYear;
     }
 
+    public Map<String, BigDecimal> uniqueIncomes(User user, LocalDate date){
+        List<Incomes> incomesByMonth = findIncomesByMonth(user, date);
+
+        Map<String, BigDecimal> unique = incomesByMonth.stream()
+                .collect(Collectors.toMap(
+                   Incomes::getIncomes,
+                   Incomes::getValue,
+                   BigDecimal::add
+                ));
+
+        return unique;
+    }
+
+    public Map<String, BigDecimal> uniqueOutcomes(User user, LocalDate date){
+        List<Outcomes> outcomesByMonth = findOutcomesByMonth(user, date);
+
+        Map<String, BigDecimal> unique = outcomesByMonth.stream()
+                .collect(Collectors.toMap(
+                        Outcomes::getOutcomes,
+                        Outcomes::getValue,
+                        BigDecimal::add
+                ));
+
+        return unique;
+    }
+    
+    
+    
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User foundedUser = userRepository.findByUserName(username);

@@ -11,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @AllArgsConstructor
@@ -218,6 +219,28 @@ public class MainController {
         try {
             User myUser = userRepository.findByUserName(user);
             return userService.sumIncomesByYear(myUser, date);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/{user}/unique/incomes")
+    public Map<String, BigDecimal> uniqueIncomes(@PathVariable String user, @RequestParam(name = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) throws Exception {
+
+        try {
+            User myUser = userRepository.findByUserName(user);
+            return userService.uniqueIncomes(myUser, date);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/{user}/unique/outcomes")
+    public Map<String, BigDecimal> uniqueOutcomes(@PathVariable String user, @RequestParam(name = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) throws Exception {
+
+        try {
+            User myUser = userRepository.findByUserName(user);
+            return userService.uniqueOutcomes(myUser, date);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
