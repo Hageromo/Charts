@@ -246,4 +246,28 @@ public class MainController {
         }
     }
 
+    @GetMapping("/{user}/incomes/all")
+    public List<Incomes> usersIncomes(@PathVariable String user) throws Exception {
+
+        try {
+            User myUser = userRepository.findByUserName(user);
+            return myUser.getIncomes();
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/{user}/outcomes/all")
+    public List<Outcomes> usersOutcomes(@PathVariable String user) throws Exception {
+
+        try {
+            User myUser = userRepository.findByUserName(user);
+            return myUser.getOutcomes();
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    //Endpoints that return incomes and outcomes in date order
+
 }
