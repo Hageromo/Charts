@@ -36,7 +36,7 @@ function App() {
               <Route path="/results" element={<Results/>}/>
               <Route path="/new" element={<NewCharts/>}/>
             </Routes>
-            
+
           </Col>
         </Row>
       </Container>
@@ -56,7 +56,8 @@ function App() {
 
 
 //   const fetchUserProfiles = () => {
-//     axios.get("http://localhost:8080/rest/all").then(res => {
+//     axios.get("http://localhost:8080/rest/all")
+//     .then(res => {
 //       console.log(res);
 //       setUserProfiles(res.data);
 //     });

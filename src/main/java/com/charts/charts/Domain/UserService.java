@@ -273,8 +273,7 @@ public class UserService implements UserDetailsService {
 
         return unique;
     }
-    
-    
+
     
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
