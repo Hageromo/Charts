@@ -1,6 +1,10 @@
 package com.charts.charts.Controller;
 
+import com.charts.charts.Document.Incomes;
+import com.charts.charts.Document.Outcomes;
+import com.charts.charts.Document.User;
 import com.charts.charts.Domain.*;
+import com.charts.charts.Repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;

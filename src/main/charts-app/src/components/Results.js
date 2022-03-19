@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faList, faEdit, faTrash} from '@fortawesome/free-solid-svg-icons';
 import ToastIn from "./Data/ToastIn";
 import MyToast from "./Data/MyToast";
+import {Link} from "react-router-dom";
 
 
 export default class Results extends Component{
@@ -65,6 +66,7 @@ export default class Results extends Component{
                 <div>
                     <div style={{"display":this.state.myShow ? "block" : "none"}}>
                         <MyToast children={{myShow:this.state.myShow, message: "Incomes Deleted Successfully"}}/>
+                        {/*<ToastIn show={this.state.show} message={'Outcomes Deleted Successfully'} type={"danger"}/>*/}
                     </div>
                     <Card className={"border border-dark bg-dark text-white"}>
                         <Card.Header>
@@ -93,8 +95,8 @@ export default class Results extends Component{
                                             <td>{users.date}</td>
                                             <td>
                                                 <ButtonGroup>
-                                                    <Button size={"sm"} variant="outline-primary"><FontAwesomeIcon icon={faEdit} /></Button>
-                                                    <Button size={"sm"} variant="outline-danger"  onClick={() => this.deleteIncomes(users.id)}><FontAwesomeIcon icon={faTrash} /></Button>
+                                                    <Link to={"/edit/"+users.id} className="btn btn-sm btn-outline-primary"><FontAwesomeIcon icon={faEdit}/></Link>{' '}
+                                                    <Button size={"sm"} variant="outline-danger"  onClick={() => this.deleteIncomes(users.id)}><FontAwesomeIcon icon={faTrash} /></Button>{' '}
                                                 </ButtonGroup>
                                             </td>
                                         </tr>
@@ -137,7 +139,7 @@ export default class Results extends Component{
                                         <td>{users.date}</td>
                                         <td>
                                             <ButtonGroup>
-                                                <Button size={"sm"} variant="outline-primary"><FontAwesomeIcon icon={faEdit} /></Button>
+                                                <Link to={"/edit/"+users.id} className="btn btn-sm btn-outline-primary"><FontAwesomeIcon icon={faEdit}/></Link>{' '}
                                                 <Button size={"sm"} variant="outline-danger" onClick={() => this.deleteOutcomes(users.id)}><FontAwesomeIcon icon={faTrash} /></Button>
                                             </ButtonGroup>
                                         </td>

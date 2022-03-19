@@ -35,6 +35,7 @@ function App() {
               <Route path="/charts" element={<ChartsList/>}/>
               <Route path="/results" element={<Results/>}/>
               <Route path="/new" element={<NewCharts/>}/>
+              <Route path="/edit/:id" element={<NewCharts/>}/>
             </Routes>
 
           </Col>

@@ -1,8 +1,9 @@
 package com.charts.charts.Domain;
 
-import com.charts.charts.Controller.Incomes;
-import com.charts.charts.Controller.Outcomes;
-import com.charts.charts.Controller.User;
+import com.charts.charts.Document.Incomes;
+import com.charts.charts.Document.Outcomes;
+import com.charts.charts.Document.User;
+import com.charts.charts.Repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

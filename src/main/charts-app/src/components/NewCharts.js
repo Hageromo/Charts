@@ -3,7 +3,9 @@ import { Card, Form, Button, Row, Col } from "react-bootstrap";
 import axios from 'axios';
 import ToastIn from "./Data/ToastIn";
 import MyToast from "./Data/MyToast";
-
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faList, faUndo, faSave, faEdit} from "@fortawesome/free-solid-svg-icons";
+import {Link} from "react-router-dom";
 
 
 export default class NewCharts extends Component{
@@ -88,7 +90,6 @@ export default class NewCharts extends Component{
         );
     }
 
-
     render(){
         return(
             <Col>
@@ -138,11 +139,12 @@ export default class NewCharts extends Component{
                             </Card.Body>
                             <Card.Footer style={{"textAlign":"right"}}>
                                 <Button size="sm" variant="success" type="submit">
-                                    Submit
+                                    <FontAwesomeIcon icon={faSave} /> Submit
                                 </Button>{'  '}
                                 <Button size="sm" variant="info" type="reset" name="InReset">
-                                    Reset
-                                </Button>
+                                    <FontAwesomeIcon icon={faUndo} /> Reset
+                                </Button>{" "}
+                                <Link to={"/results"} className="btn btn-sm btn-primary text-white" ><FontAwesomeIcon icon={faList} /> Incomes List</Link>
                             </Card.Footer>
                         </Form>
                     </Card>
@@ -194,11 +196,12 @@ export default class NewCharts extends Component{
                             </Card.Body>
                             <Card.Footer style={{"textAlign":"right"}}>
                                 <Button size="sm" variant="success" type="submit">
-                                    Submit
+                                    <FontAwesomeIcon icon={faSave} /> Submit
                                 </Button>{' '}
                                 <Button size="sm" variant="info" type="reset" name="OutReset">
-                                    Reset
-                                </Button>
+                                    <FontAwesomeIcon icon={faUndo} /> Reset
+                                </Button>{" "}
+                                <Link to={"/results"} className="btn btn-sm btn-primary text-white" ><FontAwesomeIcon icon={faList} /> Outcomes List</Link>
                             </Card.Footer>
                         </Form>
                     </Card>
@@ -209,5 +212,6 @@ export default class NewCharts extends Component{
         );
     }
 }
+
 
 

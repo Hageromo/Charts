@@ -1,7 +1,8 @@
-package com.charts.charts.Controller;
+package com.charts.charts.Controller.Security;
 
 
-import com.charts.charts.Domain.UserRepository;
+import com.charts.charts.Document.User;
+import com.charts.charts.Repository.UserRepository;
 import com.charts.charts.Domain.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

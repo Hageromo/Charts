@@ -20,6 +20,7 @@ http://localhost:8080/rest/{user}/in/momth?date=    Returns user's incomes by mo
 http://localhost:8080/rest/{user}/in/year?date=    Returns user's incomes by year
 http://localhost:8080/rest/{user}/out/year?date=    Returns user's outcomes by year
 
+
 http://localhost:8080/rest/{user}/incomes?date=    Returns sum of user's incomes
 http://localhost:8080/rest/{user}/outcomes?date=    Returns sum of user's outcomes
 http://localhost:8080/rest/{user}/incomes/month?date=    Returns sum of user's incomes in month
@@ -30,7 +31,7 @@ http://localhost:8080/rest/{user}/outcomes/year?date=    Returns sum of user's o
 http://localhost:8080/rest/{user}/unique/incomes   Returns unique incomes and sum duplicates and returns them as one unique value
 http://localhost:8080/rest/{user}/unique/outcomes   Returns unique outcomes and sum duplicates and returns them as one unique value
 
-http://localhost:8080/rest/{user}/incomes   Returns list of incomes
-http://localhost:8080/rest/{user}/outcomes   Returns list of outcomes
+http://localhost:8080/rest/{user}/incomes/all   Returns list of incomes
+http://localhost:8080/rest/{user}/outcomes/all   Returns list of outcomes
 
 

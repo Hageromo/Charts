@@ -1,7 +1,7 @@
-package com.charts.charts.Domain;
+package com.charts.charts.Repository;
 
-import com.charts.charts.Controller.Incomes;
-import com.charts.charts.Controller.User;
+import com.charts.charts.Document.Incomes;
+import com.charts.charts.Document.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
