@@ -75,42 +75,21 @@ public class UserService implements UserDetailsService {
 
     public User updateUserOutcomes(User user, Outcomes datas, int id){
 
-        datas.setId(id);
-        ArrayList<Outcomes> outcomes = new ArrayList<>();
-        outcomes.add(datas);
-
-        user.getOutcomes().remove(user.getOutcomes().stream()
-                .filter(index -> index.getId() == id)
-                .findAny()
-                .orElse(null));
-
-
-        if(user.getOutcomes() == null){
-            user.setOutcomes(outcomes);
-        }else{
-            user.getOutcomes().add(user.getOutcomes().size(),datas);
-        }
-
+        Outcomes temp = user.getOutcomes().stream().filter(e -> e.getId() == id).findAny().orElse(null);
+        temp.setId(id);
+        temp.setOutcomes(datas.getOutcomes());
+        temp.setValue(datas.getValue());
+        temp.setDate(datas.getDate());
         return userRepository.save(user);
     }
 
     public User updateUserIncomes(User user, Incomes datas, int id){
 
-        datas.setId(id);
-        ArrayList<Incomes> incomes = new ArrayList<>();
-        incomes.add(datas);
-
-        user.getIncomes().remove(user.getIncomes().stream()
-                .filter(index -> index.getId() == id)
-                .findAny()
-                .orElse(null));
-
-        if(user.getIncomes() == null){
-            user.setIncomes(incomes);
-        }else{
-            user.getIncomes().add(user.getIncomes().size(),datas);
-        }
-
+        Incomes temp = user.getIncomes().stream().filter(e -> e.getId() == id).findAny().orElse(null);
+        temp.setId(id);
+        temp.setIncomes(datas.getIncomes());
+        temp.setValue(datas.getValue());
+        temp.setDate(datas.getDate());
         return userRepository.save(user);
     }
 

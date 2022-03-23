@@ -16,6 +16,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @AllArgsConstructor
@@ -267,6 +268,26 @@ public class MainController {
         try {
             User myUser = userRepository.findByUserName(user);
             return myUser.getOutcomes();
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/{user}/incomes/{id}")
+    public Incomes incomesById(@PathVariable String user, @PathVariable int id) throws Exception{
+        try{
+            User myUser = userRepository.findByUserName(user);
+            return myUser.getIncomes().stream().filter(e -> e.getId() == id).findFirst().get();
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/{user}/outcomes/{id}")
+    public Outcomes outcomesById(@PathVariable String user, @PathVariable int id) throws Exception{
+        try{
+            User myUser = userRepository.findByUserName(user);
+            return myUser.getOutcomes().stream().filter(e -> e.getId() == id).findFirst().get();
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }

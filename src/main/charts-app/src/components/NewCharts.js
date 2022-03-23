@@ -1,12 +1,11 @@
-import React, {Component, useState} from "react";
+import React, {Component, useEffect, useState} from "react";
 import { Card, Form, Button, Row, Col } from "react-bootstrap";
 import axios from 'axios';
 import ToastIn from "./Data/ToastIn";
 import MyToast from "./Data/MyToast";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faList, faUndo, faSave, faEdit} from "@fortawesome/free-solid-svg-icons";
-import {Link} from "react-router-dom";
-
+import {faList, faUndo, faSave, faPlusSquare, faEdit} from "@fortawesome/free-solid-svg-icons";
+import {Link, MemoryRouter} from "react-router-dom";
 
 export default class NewCharts extends Component{
 
@@ -21,13 +20,56 @@ export default class NewCharts extends Component{
         this.state.show = false;
     }
 
-
     initialState = {
-        incomes:'', value:'', date: ''
+        id:'', incomes:'', value:'', date: ''
     }
 
     initialState2 = {
-        outcomes:'', valueC:'', dateC:''
+        idC:'', outcomes:'', valueC:'', dateC:''
+    }
+
+
+    componentDidMount = () => {
+        var currentUrl = window.location.pathname.split('/');
+        var location = currentUrl[2];
+        if(location === "incomes"){
+            this.findIncomesById(currentUrl[3]);
+        }
+        if(location === "outcomes"){
+            this.findOutcomesById(currentUrl[3])
+        }
+    }
+
+    findIncomesById = (incomesId) => {
+        axios.get("http://localhost:8080/rest/hageromo/incomes/"+incomesId)
+            .then(response => {
+                if(response.data != null){
+                    this.setState({
+                        id: response.data.id,
+                        incomes: response.data.incomes,
+                        value: response.data.value,
+                        date: response.data.date
+                    });
+                }
+            }).catch((error) => {
+            console.error("Error - "+error)
+        });
+    }
+
+    findOutcomesById = (outcomesId) => {
+        axios.get("http://localhost:8080/rest/hageromo/outcomes/"+outcomesId)
+            .then(response => {
+                if(response.data != null){
+                    this.setState({
+                        idC: response.data.id,
+                        outcomes: response.data.outcomes,
+                        valueC: response.data.value,
+                        dateC: response.data.date
+                    });
+                }
+            }).catch((error) => {
+            console.error("Error - "+error)
+        });
     }
 
     resetData = () =>{
@@ -82,6 +124,50 @@ export default class NewCharts extends Component{
         this.setState(this.initialState2);
     }
 
+    updateIncome = event => {
+        event.preventDefault();
+        const data = {
+            id: this.state.id,
+            incomes: this.state.incomes,
+            value: this.state.value,
+            date: this.state.date,
+        };
+
+        axios.put("http://localhost:8080/rest/update/in/hageromo/"+data.id, data)
+            .then(res => {
+                if(res.data != null){
+                    this.setState({"myShow": true});
+                    setTimeout(() => this.setState({"myShow":false}), 2000);
+                    setTimeout(() => window.location.href = "http://localhost:3000/results", 2000);
+                }else{
+                    this.setState({"myShow": false});
+                }
+            })
+        this.setState(this.initialState);
+    };
+
+    updateOutcome = event => {
+        event.preventDefault();
+        const data = {
+            id: this.state.idC,
+            outcomes: this.state.outcomes,
+            value: this.state.valueC,
+            date: this.state.dateC,
+        };
+
+        axios.put("http://localhost:8080/rest/update/out/hageromo/"+data.id, data)
+            .then(res => {
+                if(res.data != null){
+                    this.setState({"show": true});
+                    setTimeout(() => this.setState({"show":false}), 2000);
+                    setTimeout(() => window.location.href = "http://localhost:3000/results", 2000);
+                }else{
+                    this.setState({"show": false});
+                }
+            })
+        this.setState(this.initialState2);
+    };
+
     dataChange = event =>{
         this.setState(
             {
@@ -99,9 +185,9 @@ export default class NewCharts extends Component{
                     </div>
                     <Card className={"border border-dark bg-dark text-white"}>
                         <Card.Header>
-                            Add Incomes
+                            <FontAwesomeIcon icon={this.state.id ? faEdit : faPlusSquare}/> {this.state.id ? "Update Incomes" : "Add Incomes"}
                         </Card.Header>
-                        <Form onReset={this.resetData} onSubmit={this.submitData} id="dataFormId">
+                        <Form onReset={this.resetData} onSubmit={this.state.id ? this.updateIncome : this.submitData} id="dataFormId">
                             <Card.Body>
                                 <Row>
                                     <Col>
@@ -139,7 +225,7 @@ export default class NewCharts extends Component{
                             </Card.Body>
                             <Card.Footer style={{"textAlign":"right"}}>
                                 <Button size="sm" variant="success" type="submit">
-                                    <FontAwesomeIcon icon={faSave} /> Submit
+                                    <FontAwesomeIcon icon={faSave} /> {this.state.id ? "Update" : "Save"}
                                 </Button>{'  '}
                                 <Button size="sm" variant="info" type="reset" name="InReset">
                                     <FontAwesomeIcon icon={faUndo} /> Reset
@@ -156,9 +242,9 @@ export default class NewCharts extends Component{
                     </div>
                     <Card className={"border border-dark bg-dark text-white"}>
                         <Card.Header>
-                            Add Outcomes
+                            <FontAwesomeIcon icon={this.state.idC ? faEdit : faPlusSquare}/> {this.state.idC ? "Update Outcomes" : "Add Outcomes"}
                         </Card.Header>
-                        <Form onReset={this.resetData2} onSubmit={this.submitData2} id="dataFormId">
+                        <Form onReset={this.resetData2} onSubmit={this.state.idC ? this.updateOutcome : this.submitData2} id="dataFormId">
                             <Card.Body>
                                 <Row>
                                     <Col>
@@ -196,7 +282,7 @@ export default class NewCharts extends Component{
                             </Card.Body>
                             <Card.Footer style={{"textAlign":"right"}}>
                                 <Button size="sm" variant="success" type="submit">
-                                    <FontAwesomeIcon icon={faSave} /> Submit
+                                    <FontAwesomeIcon icon={faSave} /> {this.state.idC ? "Update" : "Save"}
                                 </Button>{' '}
                                 <Button size="sm" variant="info" type="reset" name="OutReset">
                                     <FontAwesomeIcon icon={faUndo} /> Reset
@@ -212,6 +298,3 @@ export default class NewCharts extends Component{
         );
     }
 }
-
-
-

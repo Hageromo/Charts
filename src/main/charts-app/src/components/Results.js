@@ -95,7 +95,7 @@ export default class Results extends Component{
                                             <td>{users.date}</td>
                                             <td>
                                                 <ButtonGroup>
-                                                    <Link to={"/edit/"+users.id} className="btn btn-sm btn-outline-primary"><FontAwesomeIcon icon={faEdit}/></Link>{' '}
+                                                    <Link to={"/edit/incomes/"+users.id} className="btn btn-sm btn-outline-primary"><FontAwesomeIcon icon={faEdit}/></Link>{' '}
                                                     <Button size={"sm"} variant="outline-danger"  onClick={() => this.deleteIncomes(users.id)}><FontAwesomeIcon icon={faTrash} /></Button>{' '}
                                                 </ButtonGroup>
                                             </td>
@@ -139,7 +139,7 @@ export default class Results extends Component{
                                         <td>{users.date}</td>
                                         <td>
                                             <ButtonGroup>
-                                                <Link to={"/edit/"+users.id} className="btn btn-sm btn-outline-primary"><FontAwesomeIcon icon={faEdit}/></Link>{' '}
+                                                <Link to={"/edit/outcomes/"+users.id} className="btn btn-sm btn-outline-primary"><FontAwesomeIcon icon={faEdit}/></Link>{' '}
                                                 <Button size={"sm"} variant="outline-danger" onClick={() => this.deleteOutcomes(users.id)}><FontAwesomeIcon icon={faTrash} /></Button>
                                             </ButtonGroup>
                                         </td>

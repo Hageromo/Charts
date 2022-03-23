@@ -34,4 +34,6 @@ http://localhost:8080/rest/{user}/unique/outcomes   Returns unique outcomes and 
 http://localhost:8080/rest/{user}/incomes/all   Returns list of incomes
 http://localhost:8080/rest/{user}/outcomes/all   Returns list of outcomes
 
+http://localhost:8080/rest/{user}/incomes/{id}   Returns income by id
+http://localhost:8080/rest/{user}/outcomes/{id}   Returns outcome by id
 
