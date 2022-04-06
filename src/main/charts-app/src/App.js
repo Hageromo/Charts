@@ -1,6 +1,6 @@
 //import React, {useState, useEffect} from 'react';
 //import logo from './logo.svg';
-import './App.css';
+import './components/Results/App.css';
 //import axios from 'axios';
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
@@ -13,12 +13,15 @@ import Footer from './components/Footer';
 import NewCharts from './components/NewCharts';
 import Results from './components/Results';
 import Contact from './components/Contact';
-
+import Incomes from "./components/Results/Incomes";
+import Outcomes from "./components/Results/Outcomes";
+import NewIncomes from "./components/NewCharts/NewIncomes";
+import NewOutcomes from "./components/NewCharts/NewOutcomes";
 
 function App() {
 
   const marginTop = {
-    marginTop:"20px"
+    marginTop:"25px"
   };
 
   return (
@@ -33,10 +36,15 @@ function App() {
               <Route path="/" element={<Welcome/>}/>
               <Route path="/contact" element={<Contact/>}/>
               <Route path="/charts" element={<ChartsList/>}/>
+              <Route path="/charts" element={<ChartsList/>}/>
               <Route path="/results" element={<Results/>}/>
+              <Route path="/incomes" element={<Incomes/>}/>
+              <Route path="/outcomes" element={<Outcomes/>}/>
               <Route path="/new" element={<NewCharts/>}/>
-              <Route path="/edit/incomes/:id" element={<NewCharts/>}/>
-              <Route path="/edit/outcomes/:id" element={<NewCharts/>}/>
+              <Route path="/new/incomes" element={<NewIncomes/>}/>
+              <Route path="/new/outcomes" element={<NewOutcomes/>}/>
+              <Route path="/edit/incomes/:id" element={<NewIncomes/>}/>
+              <Route path="/edit/outcomes/:id" element={<NewOutcomes/>}/>
             </Routes>
 
           </Col>

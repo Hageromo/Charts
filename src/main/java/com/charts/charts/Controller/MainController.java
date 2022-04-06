@@ -14,6 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -295,4 +296,63 @@ public class MainController {
 
     //Endpoints that return incomes and outcomes in date order
 
+    @GetMapping({"/data/{user}/incomes/up"})
+    public List<Incomes> incomesByDateUp(@PathVariable String user) throws Exception{
+        try{
+            User myUser = userRepository.findByUserName(user);
+
+            return myUser.getIncomes()
+                    .stream()
+                    .sorted(Comparator.comparing(Incomes::getDate))
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping({"/data/{user}/incomes/down"})
+    public List<Incomes> incomesByDateDown(@PathVariable String user) throws Exception{
+        try{
+            User myUser = userRepository.findByUserName(user);
+
+            return myUser.getIncomes()
+                    .stream()
+                    .sorted(Comparator.comparing(Incomes::getDate)
+                            .reversed())
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping({"/data/{user}/outcomes/up"})
+    public List<Outcomes> outcomesByDateUp(@PathVariable String user) throws Exception{
+        try{
+            User myUser = userRepository.findByUserName(user);
+
+            return myUser.getOutcomes()
+                    .stream()
+                    .sorted(Comparator.comparing(Outcomes::getDate))
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping({"/data/{user}/outcomes/down"})
+    public List<Outcomes> outcomesByDateDown(@PathVariable String user) throws Exception{
+        try{
+            User myUser = userRepository.findByUserName(user);
+
+            return myUser.getOutcomes()
+                    .stream()
+                    .sorted(Comparator.comparing(Outcomes::getDate)
+                            .reversed())
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    //Endpoints that return incomes and outcomes in price order
 }

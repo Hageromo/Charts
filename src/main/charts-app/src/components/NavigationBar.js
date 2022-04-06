@@ -1,7 +1,8 @@
 import React, {Component} from "react";
-import {Navbar, Nav} from "react-bootstrap";
+import {Navbar, Nav, NavDropdown} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Link} from 'react-router-dom';
+import "./Results/App.css"
 
 export default class NavigationBar extends Component{
     render(){
@@ -16,13 +17,23 @@ export default class NavigationBar extends Component{
                     <Link to={""} className="nav-link">Home</Link>
                     <Link to={"contact"} className="nav-link">Contact</Link>
                     <Link to={"charts"} className="nav-link">List of charts</Link>
-                    <Link to={"new"} className="nav-link">Create new chart</Link>
-                    <Link to={"results"} className="nav-link">Results</Link>
+                    <NavDropdown title="Create new chart" id="basic-nav-dropdown">
+                        <NavDropdown.Item as={Link} to={"new/incomes"} style={{ fontSize: '95%' }}>Incomes</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to={"new/outcomes"} style={{ fontSize: '95%' }}>Outcomes</NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item as={Link} to={"new"} style={{ fontSize: '95%' }}>Test czy zostaje?</NavDropdown.Item>
+                    </NavDropdown>
+                    <NavDropdown title="Results" id="basic-nav-dropdown">
+                        <NavDropdown.Item as={Link} to={"incomes"} style={{ fontSize: '95%' }}>Incomes</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to={"outcomes"} style={{ fontSize: '95%' }}>Outcomes</NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item as={Link} to={"results"} style={{ fontSize: '95%' }}>All Results</NavDropdown.Item>
+                    </NavDropdown>
                 </Nav>
-                {/* <Nav className="mr-auto">
-                    <Link to={"/login"}>Login</Link>
-                    <Link to={"/register"}>Register</Link>
-                </Nav> */}
+                <Nav className="ms-auto">
+                    <Link to={"/login"} className="nav-link">Login</Link>
+                    <Link to={"/register"} className="nav-link">Register</Link>
+                </Nav>
             </Navbar>
         );
     }

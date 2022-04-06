@@ -37,3 +37,8 @@ http://localhost:8080/rest/{user}/outcomes/all   Returns list of outcomes
 http://localhost:8080/rest/{user}/incomes/{id}   Returns income by id
 http://localhost:8080/rest/{user}/outcomes/{id}   Returns outcome by id
 
+http://localhost:8080/rest/date/{user}/incomes/up  Returns incomes by date in order
+http://localhost:8080/rest/date/{user}/incomes/down   Returns incomes by date in reversed order
+http://localhost:8080/rest/date/{user}/outcomes/up   Returns outcomes by date in order
+http://localhost:8080/rest/date/{user}/outcomes/down   Returns outcomes by date in reversed order
+
