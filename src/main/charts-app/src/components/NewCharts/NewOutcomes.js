@@ -35,7 +35,7 @@ export default class NewOutcomes extends Component{
     }
 
     findOutcomesById = (outcomesId) => {
-        axios.get("http://localhost:8080/rest/hageromo/outcomes/"+outcomesId)
+        axios.get("http://localhost:8080/rest/"+ localStorage.getItem("login") +"/outcomes/"+outcomesId)
             .then(response => {
                 if(response.data != null){
                     this.setState({
@@ -64,7 +64,7 @@ export default class NewOutcomes extends Component{
             date: this.state.dateC,
         };
 
-        axios.post("http://localhost:8080/rest/add/outcomes/hageromo", dataCosts)
+        axios.post("http://localhost:8080/rest/add/outcomes/"+ localStorage.getItem("login"), dataCosts)
             .then(res => {
                 if(res.data != null){
                     this.setState({"show": true});
@@ -85,7 +85,7 @@ export default class NewOutcomes extends Component{
             date: this.state.dateC,
         };
 
-        axios.put("http://localhost:8080/rest/update/out/hageromo/"+data.id, data)
+        axios.put("http://localhost:8080/rest/update/out/"+ localStorage.getItem("login") +"/"+data.id, data)
             .then(res => {
                 if(res.data != null){
                     this.setState({"show": true, "method":"put"});
@@ -159,7 +159,7 @@ export default class NewOutcomes extends Component{
                                 <Button size="sm" variant="info" type="reset" name="OutReset">
                                     <FontAwesomeIcon icon={faUndo} /> Reset
                                 </Button>{" "}
-                                <Link to={"/results"} className="btn btn-sm btn-primary text-white" ><FontAwesomeIcon icon={faList} /> Outcomes List</Link>
+                                <Link to={"/outcomes"} className="btn btn-sm btn-primary text-white" ><FontAwesomeIcon icon={faList} /> Outcomes List</Link>
                             </Card.Footer>
                         </Form>
                     </Card>

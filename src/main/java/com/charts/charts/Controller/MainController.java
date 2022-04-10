@@ -33,9 +33,14 @@ public class MainController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/{user}")
-    public User user(@PathVariable String user){
-        return userRepository.findByUserName(user);
+    @GetMapping("/{user}/{password}")
+    public ResponseEntity<User> user(@PathVariable String user, @PathVariable String password){
+        User myUser = userRepository.findByUserName(user);
+        if(myUser.getPassword().equals(password)){
+            return new ResponseEntity<>(myUser, HttpStatus.CREATED);
+        }else{
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping("/add")

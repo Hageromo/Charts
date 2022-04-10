@@ -1,7 +1,7 @@
 List of endpoints:
 
 http://localhost:8080/rest/all      Returns all users
-http://localhost:8080/rest/{user}   Returns user
+http://localhost:8080/rest/{user}/{password}   Returns user
 
 http://localhost:8080/rest/add      Add new user to database
 http://localhost:8080/rest/add/incomes/{user}   Add incomes to user

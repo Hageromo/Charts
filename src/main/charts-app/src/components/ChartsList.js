@@ -24,7 +24,7 @@ const UserProfiles = () => {
     const [date, setDate] = useState([]);
 
   const fetchUserProfiles = () => {
-    axios.get("http://localhost:8080/rest/hageromo")
+    axios.get("http://localhost:8080/rest/" + localStorage.getItem("login"))
         .then(res => {
             setDataIncomes(res.data.incomes);
             setDataOutcomes(res.data.outcomes);

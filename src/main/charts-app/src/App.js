@@ -17,7 +17,8 @@ import Incomes from "./components/Results/Incomes";
 import Outcomes from "./components/Results/Outcomes";
 import NewIncomes from "./components/NewCharts/NewIncomes";
 import NewOutcomes from "./components/NewCharts/NewOutcomes";
-
+import Login from "./components/Login/Login";
+import Register from "./components/Login/Register";
 function App() {
 
   const marginTop = {
@@ -45,6 +46,9 @@ function App() {
               <Route path="/new/outcomes" element={<NewOutcomes/>}/>
               <Route path="/edit/incomes/:id" element={<NewIncomes/>}/>
               <Route path="/edit/outcomes/:id" element={<NewOutcomes/>}/>
+              <Route path={"/login"} element={<Login/>}/>
+              <Route path={"/register"} element={<Register/>}/>
+              <Route path={"/logout"} element={<Login/>}/>
             </Routes>
 
           </Col>

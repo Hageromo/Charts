@@ -43,7 +43,7 @@ public class UserService implements UserDetailsService {
         ArrayList<Incomes> incomes = new ArrayList<>();
         incomes.add(datas);
 
-        if(user.getIncomes().isEmpty()){
+        if(user.getIncomes() == null){
             user.setIncomes(incomes);
         }else{
             user.getIncomes().add(user.getIncomes().size(), datas);
@@ -54,7 +54,7 @@ public class UserService implements UserDetailsService {
 
     public User addOutcomes(Outcomes datas, User user){
 
-        if(user.getOutcomes().isEmpty()){
+        if(user.getOutcomes() == null){
             datas.setId(0);
         }else{
             int max = user.getOutcomes().stream().max(Comparator.comparing(Outcomes::getId)).orElseThrow(NoSuchElementException::new).getId();

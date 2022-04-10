@@ -17,8 +17,9 @@ import {Link} from "react-router-dom";
 import './App.css'
 import '../Data/CantFind'
 import CantFind from "../Data/CantFind";
+import {connect} from "react-redux";
 
-export default class Incomes extends Component{
+class Incomes extends Component{
 
     constructor(props){
         super(props);
@@ -37,7 +38,6 @@ export default class Incomes extends Component{
         }else{
             this.state.sortToggle = "down"
         }
-
         this.findAllData();
     };
 
@@ -46,7 +46,7 @@ export default class Incomes extends Component{
     }
 
     findAllData(){
-        axios.get("http://localhost:8080/rest/data/hageromo/incomes/" + this.state.sortToggle)
+        axios.get("http://localhost:8080/rest/data/"+ localStorage.getItem("login") +"/incomes/" + this.state.sortToggle)
             .then(response => response.data)
             .then((data) => {
                 this.setState({user : data});
@@ -54,7 +54,7 @@ export default class Incomes extends Component{
     }
 
     deleteIncomes = (id) => {
-        axios.delete("http://localhost:8080/rest/delete/in/hageromo/"+id)
+        axios.delete("http://localhost:8080/rest/delete/in/"+ localStorage.getItem("login") + "/"+id)
             .then(response => {
                 if(response.data != null){
                     this.setState({"myShow": true});
@@ -264,3 +264,10 @@ export default class Incomes extends Component{
 
 }
 
+const mapStateToProps = state => {
+    return {
+        auth: state.auth
+    }
+};
+
+export default connect(mapStateToProps)(Incomes);
