@@ -236,22 +236,22 @@ public class MainController {
     }
 
     @GetMapping("/{user}/unique/incomes")
-    public Map<String, BigDecimal> uniqueIncomes(@PathVariable String user, @RequestParam(name = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) throws Exception {
+    public Map<String, BigDecimal> uniqueIncomes(@PathVariable String user) throws Exception {
 
         try {
             User myUser = userRepository.findByUserName(user);
-            return userService.uniqueIncomes(myUser, date);
+            return userService.uniqueIncomes(myUser);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
 
     @GetMapping("/{user}/unique/outcomes")
-    public Map<String, BigDecimal> uniqueOutcomes(@PathVariable String user, @RequestParam(name = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) throws Exception {
+    public Map<String, BigDecimal> uniqueOutcomes(@PathVariable String user) throws Exception {
 
         try {
             User myUser = userRepository.findByUserName(user);
-            return userService.uniqueOutcomes(myUser, date);
+            return userService.uniqueOutcomes(myUser);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
@@ -359,5 +359,17 @@ public class MainController {
         }
     }
 
-    //Endpoints that return incomes and outcomes in price order
+    @GetMapping("/{user}/in/exact")
+    public List<Incomes> getIncomesInDate(@PathVariable String user, @RequestParam(name = "dateSince") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateSince,
+    @RequestParam(name = "dateTo") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateTo) throws Exception{
+        User myUser = userRepository.findByUserName(user);
+        return userService.findIncomesByExactTime(myUser, dateSince, dateTo);
+    }
+
+    @GetMapping("/{user}/out/exact")
+    public List<Outcomes> getOutcomesInDate(@PathVariable String user, @RequestParam(name = "dateSince") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateSince,
+    @RequestParam(name = "dateTo") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateTo) throws Exception{
+        User myUser = userRepository.findByUserName(user);
+        return userService.findOutcomesByExactTime(myUser, dateSince, dateTo);
+    }
 }

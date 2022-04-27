@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -228,10 +229,9 @@ public class UserService implements UserDetailsService {
         return sumOutcomesByYear;
     }
 
-    public Map<String, BigDecimal> uniqueIncomes(User user, LocalDate date){
-        List<Incomes> incomesByMonth = findIncomesByMonth(user, date);
+    public Map<String, BigDecimal> uniqueIncomes(User user){
 
-        Map<String, BigDecimal> unique = incomesByMonth.stream()
+        Map<String, BigDecimal> unique = user.getIncomes().stream()
                 .collect(Collectors.toMap(
                    Incomes::getIncomes,
                    Incomes::getValue,
@@ -241,10 +241,9 @@ public class UserService implements UserDetailsService {
         return unique;
     }
 
-    public Map<String, BigDecimal> uniqueOutcomes(User user, LocalDate date){
-        List<Outcomes> outcomesByMonth = findOutcomesByMonth(user, date);
+    public Map<String, BigDecimal> uniqueOutcomes(User user){
 
-        Map<String, BigDecimal> unique = outcomesByMonth.stream()
+        Map<String, BigDecimal> unique = user.getOutcomes().stream()
                 .collect(Collectors.toMap(
                         Outcomes::getOutcomes,
                         Outcomes::getValue,
@@ -252,6 +251,42 @@ public class UserService implements UserDetailsService {
                 ));
 
         return unique;
+    }
+
+    public List<Incomes> findIncomesByExactTime(User user, LocalDate dateSince, LocalDate dateTo) throws Exception {
+
+        List<Incomes> dateInOrder =  user.getIncomes()
+                .stream()
+                .sorted(Comparator.comparing(Incomes::getDate))
+                .collect(Collectors.toList());
+
+        List<Incomes> incomes = dateInOrder.stream()
+                .filter(day -> day.getDate().isBefore(dateTo.plusDays(1)))
+                .filter(day -> day.getDate().isAfter(dateSince.minusDays(1)))
+                .collect(Collectors.toList());
+
+        if(dateSince.isAfter(dateTo)){
+            throw new Exception("Wrong date order");
+        }
+        return incomes;
+    }
+
+    public List<Outcomes> findOutcomesByExactTime(User user, LocalDate dateSince, LocalDate dateTo) throws Exception {
+
+        List<Outcomes> dateInOrder =  user.getOutcomes()
+                .stream()
+                .sorted(Comparator.comparing(Outcomes::getDate))
+                .collect(Collectors.toList());
+
+        List<Outcomes> outcomes = dateInOrder.stream()
+                .filter(day -> day.getDate().isBefore(dateTo.plusDays(1)))
+                .filter(day -> day.getDate().isAfter(dateSince.minusDays(1)))
+                .collect(Collectors.toList());
+
+        if(dateSince.isAfter(dateTo)){
+            throw new Exception("Wrong date order");
+        }
+        return outcomes;
     }
 
     

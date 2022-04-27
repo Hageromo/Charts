@@ -21,8 +21,8 @@ http://localhost:8080/rest/{user}/in/year?date=    Returns user's incomes by yea
 http://localhost:8080/rest/{user}/out/year?date=    Returns user's outcomes by year
 
 
-http://localhost:8080/rest/{user}/incomes?date=    Returns sum of user's incomes
-http://localhost:8080/rest/{user}/outcomes?date=    Returns sum of user's outcomes
+http://localhost:8080/rest/{user}/incomes               Returns sum of user's incomes
+http://localhost:8080/rest/{user}/outcomes              Returns sum of user's outcomes
 http://localhost:8080/rest/{user}/incomes/month?date=    Returns sum of user's incomes in month
 http://localhost:8080/rest/{user}/outcomes/month?date=    Returns sum of user's outcomes on month
 http://localhost:8080/rest/{user}/incomes/year?date=    Returns sum of user's incomes in year
@@ -41,4 +41,7 @@ http://localhost:8080/rest/date/{user}/incomes/up  Returns incomes by date in or
 http://localhost:8080/rest/date/{user}/incomes/down   Returns incomes by date in reversed order
 http://localhost:8080/rest/date/{user}/outcomes/up   Returns outcomes by date in order
 http://localhost:8080/rest/date/{user}/outcomes/down   Returns outcomes by date in reversed order
+
+http://localhost:8080/rest/{user}/in/exact?dataSince=...&dateTo=...     Returns user's incomes by exact date
+http://localhost:8080/rest/{user}/out/exact?dataSince=...&dateTo=...    Returns user's outcomes by exact date
 

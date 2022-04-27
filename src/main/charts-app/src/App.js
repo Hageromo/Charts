@@ -19,6 +19,7 @@ import NewIncomes from "./components/NewCharts/NewIncomes";
 import NewOutcomes from "./components/NewCharts/NewOutcomes";
 import Login from "./components/Login/Login";
 import Register from "./components/Login/Register";
+import CustomChart from "./components/CustomChart";
 function App() {
 
   const marginTop = {
@@ -49,6 +50,7 @@ function App() {
               <Route path={"/login"} element={<Login/>}/>
               <Route path={"/register"} element={<Register/>}/>
               <Route path={"/logout"} element={<Login/>}/>
+              <Route path={"/custom"} element={<CustomChart/>}/>
             </Routes>
 
           </Col>
