@@ -46,22 +46,18 @@ class NavigationBar extends Component{
                 <Nav className="mr-auto">
                     <Link to={""} className="nav-link active">Home</Link>
                     <Link to={"custom"} className="nav-link active">Custom Chart</Link>
-                    <Link to={"charts"} className="nav-link active" onClick={this.refresh}>List of charts</Link>
+                    <Link to={"charts"} className="nav-link active" onClick={this.refresh}>List of Charts</Link>
                     <NavDropdown active={true} menuVariant="dark" title={"Create new chart"} id="basic-nav-dropdown">
                         <NavDropdown.Item as={Link} to={"new/incomes"} style={{ fontSize: '95%' }}>Incomes</NavDropdown.Item>
-                        <NavDropdown.Item as={Link} to={"new/outcomes"} style={{ fontSize: '95%' }}>Outcomes</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item as={Link} to={"new"} style={{ fontSize: '95%' }}>Test czy zostaje?</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to={"new/outcomes"} style={{ fontSize: '95%' }}>Expenses</NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown active={true} menuVariant="dark" title={"Results"} id="basic-nav-dropdown">
                         <NavDropdown.Item as={Link} to={"incomes"} style={{ fontSize: '95%' }}>Incomes</NavDropdown.Item>
-                        <NavDropdown.Item as={Link} to={"outcomes"} style={{ fontSize: '95%' }}>Outcomes</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item as={Link} to={"results"} style={{ fontSize: '95%' }}>All Results</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to={"outcomes"} style={{ fontSize: '95%' }}>Expenses</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
                 <Nav className="ms-auto">
-                    <Link to={"/logout"} className="nav-link text-white" onClick={this.logout}><FontAwesomeIcon icon={faSignInAlt}/> Logout: {localStorage.getItem("login")}</Link>,
+                    <Link to={"/logout"} className="nav-link text-white active" onClick={this.logout}><FontAwesomeIcon icon={faSignInAlt}/> Logout: {localStorage.getItem("login")}</Link>,
                 </Nav>
             </Navbar>
         );

@@ -123,7 +123,7 @@ class ChartsList extends React.Component {
     options = {
         hAxis: { minValue: 0, maxValue: 60 },
         chartArea: { top: 0, right: 0, bottom: 0 },
-        title: "Zakres przychodów użytkownika " + localStorage.getItem("login")
+        title: "User incomes range " + localStorage.getItem("login")
     };
 
     putDataControl(uniqueValue) {
@@ -163,7 +163,7 @@ class ChartsList extends React.Component {
                             <Chart
                                 chartType="PieChart"
                                 data={this.putData()}
-                                options={{title: "Zestawienie przychodów i wydatków " + localStorage.getItem("login")}}
+                                options={{title: "Statement of incomes and expenses " + localStorage.getItem("login")}}
                                 width={"95%"}
                                 height={"500px"}
                                 className={"centerChart"}
@@ -188,7 +188,7 @@ class ChartsList extends React.Component {
                                 width="95%"
                                 height="500px"
                                 data={this.putDataColumn()}
-                                options={{title: "Zestawienie przychodów i wydatków " + localStorage.getItem("login")}}
+                                options={{title: "Statement of incomes and expenses " + localStorage.getItem("login")}}
                                 className={"centerChart"}/>
                         </th>
                     </tr>
@@ -208,7 +208,7 @@ class ChartsList extends React.Component {
                             <Chart
                                 chartType="PieChart"
                                 data={this.putUniqueData(this.state.uniqueIncomes)}
-                                options={{title: "Kołowe zestawienie przychodów użytkownika " + localStorage.getItem("login")}}
+                                options={{title: "Circle statement of incomes " + localStorage.getItem("login")}}
                                 width={"95%"}
                                 height={"500px"}
                                 className={"centerChart"}
@@ -233,7 +233,7 @@ class ChartsList extends React.Component {
                                 width="95%"
                                 height="500px"
                                 data={this.putUniqueDataColumn(this.state.uniqueIncomes)}
-                                options={{title: "Kolumnowe zestawienie przychodów użytkownika " + localStorage.getItem("login")}}
+                                options={{title: "Column statement of incomes " + localStorage.getItem("login")}}
                                 className={"centerChart"}/>
                         </th>
                     </tr>
@@ -253,7 +253,7 @@ class ChartsList extends React.Component {
                             <Chart
                                 chartType="PieChart"
                                 data={this.putUniqueData(this.state.uniqueOutcomes)}
-                                options={{title: "Kołowe zestawienie wydatków użytkownika " + localStorage.getItem("login")}}
+                                options={{title: "Circle statement of expenses " + localStorage.getItem("login")}}
                                 width={"95%"}
                                 height={"500px"}
                                 className={"centerChart"}
@@ -278,7 +278,7 @@ class ChartsList extends React.Component {
                                 width="95%"
                                 height="500px"
                                 data={this.putUniqueDataColumn(this.state.uniqueOutcomes)}
-                                options={{title: "Kolumnowe zestawienie wydatków użytkownika " + localStorage.getItem("login")}}
+                                options={{title: "Column statement of expenses " + localStorage.getItem("login")}}
                                 className={"centerChart"}/>
                         </th>
                     </tr>
@@ -295,7 +295,7 @@ class ChartsList extends React.Component {
                     <tbody>
                     <tr>
                         <th width={1200}>
-                            <h3 className={"text-white centerChart"}>Zakres przychodów użytkownika {localStorage.getItem("login")}</h3>
+                            <h3 className={"text-white centerChart"}>User incomes range {localStorage.getItem("login")}</h3>
                             <Chart
                                 chartType="BarChart"
                                 width="95%"
@@ -329,7 +329,7 @@ class ChartsList extends React.Component {
                     <tbody>
                     <tr>
                         <th width={1200}>
-                            <h3 className={"text-white centerChart"}>Zakres wydatków użytkownika {localStorage.getItem("login")}</h3>
+                            <h3 className={"text-white centerChart"}>User expenses range {localStorage.getItem("login")}</h3>
                             <Chart
                                 chartType="BarChart"
                                 width="95%"
@@ -364,7 +364,7 @@ class ChartsList extends React.Component {
                     <tbody>
                     <tr>
                         <th width={1200}>
-                            <h3 className={"text-white centerChart"}>Zakres przychodów użytkownika {localStorage.getItem("login")}</h3>
+                            <h3 className={"text-white centerChart"}>User incomes range {localStorage.getItem("login")}</h3>
                             <div className={"centerChart"}>
                                 <Chart
                                     chartType="PieChart"
@@ -415,7 +415,7 @@ class ChartsList extends React.Component {
                     <tbody>
                     <tr>
                         <th width={1200}>
-                            <h3 className={"text-white centerChart"}>Zakres wydatków użytkownika {localStorage.getItem("login")}</h3>
+                            <h3 className={"text-white centerChart"}>User expenses range {localStorage.getItem("login")}</h3>
                             <div className={"centerChart"}>
                                 <Chart
                                     chartType="PieChart"
@@ -509,8 +509,8 @@ class ChartsList extends React.Component {
                                 id="input-group-dropdown-1"
                             >
                                 <Dropdown.Item href="#" type="button" onClick={this.setIncomesStatus}>Incomes</Dropdown.Item>
-                                <Dropdown.Item href="#" type="button" onClick={this.setOutcomesStatus}>Outcomes</Dropdown.Item>
-                                <Dropdown.Item href="#" type="button" onClick={this.setGlobalStatus}>Incomes && Outcomes</Dropdown.Item>
+                                <Dropdown.Item href="#" type="button" onClick={this.setOutcomesStatus}>Expenses</Dropdown.Item>
+                                <Dropdown.Item href="#" type="button" onClick={this.setGlobalStatus}>Incomes && Expenses</Dropdown.Item>
                                 <Dropdown.Divider />
                                 <Dropdown.Item href="#" type="button" onClick={this.setColumnStatus}>Column Charts</Dropdown.Item>
                                 <Dropdown.Item href="#" type="button" onClick={this.setPieStatus}>Pie Charts</Dropdown.Item>

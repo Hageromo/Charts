@@ -17,7 +17,12 @@
 }
 
 .backColor2 {
-    background-image: linear-gradient(to bottom right, #EEEEEE, grey);
+    background-image: linear-gradient(to bottom right,darkgray, #594D5B);
+    /*background-color: #EEEEEE;*/
+}
+
+.backColor3 {
+    background-image: linear-gradient(to bottom right,gray,darkgray, #594D5B, #EEEEEE, white);
     /*background-color: #EEEEEE;*/
 }
 

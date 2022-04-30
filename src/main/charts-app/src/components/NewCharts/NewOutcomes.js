@@ -114,19 +114,19 @@ export default class NewOutcomes extends Component{
                     </div>
                     <Card className={"border border-dark bg-dark text-white"}>
                         <Card.Header>
-                            <FontAwesomeIcon icon={this.state.idC ? faEdit : faPlusSquare}/> {this.state.idC ? "Update Outcomes" : "Add Outcomes"}
+                            <FontAwesomeIcon icon={this.state.idC ? faEdit : faPlusSquare}/> {this.state.idC ? "Update Expenses" : "Add Expenses"}
                         </Card.Header>
                         <Form onReset={this.resetData2} onSubmit={this.state.idC ? this.updateOutcome : this.submitData2} id="dataFormId">
                             <Card.Body>
                                 <Row>
                                     <Col>
                                         <Form.Group as={Col}>
-                                            <Form.Label>Outcomes</Form.Label>
+                                            <Form.Label>Expenses</Form.Label>
                                             <Form.Control required type="text" name="outcomes" autoComplete="off"
                                                           value={this.state.outcomes}
                                                           onChange={this.dataChange}
                                                           className={"bg-dark text-white"}
-                                                          placeholder="Enter outcome" />
+                                                          placeholder="Enter expenses" />
                                         </Form.Group>
                                     </Col>
 

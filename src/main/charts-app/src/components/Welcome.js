@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Carousel, Col} from "react-bootstrap";
+import {Card, Carousel, Col} from "react-bootstrap";
 import {Chart} from "react-google-charts";
 import "./charts.css"
 import { Pie } from 'react-chartjs-2';
@@ -20,7 +20,7 @@ let data = [
 
 export const options = {
     title: "My Daily Activities",
-    backgroundColor: '#EEEEEE',
+    // backgroundColor: '#EEEEEE',
     // titleTextStyle: {color: 'white'},
     // legendTextStyle: {color: 'white'},
 };
@@ -37,32 +37,22 @@ export const optionsMyLine = {
     title: "Company Performance",
     curveType: "function",
     legend: { position: "bottom" },
-    backgroundColor: '#EEEEEE',
+    // backgroundColor: '#EEEEEE',
 };
 
-export function App() {
-    return (
-        <Chart
-            chartType="PieChart"
-            data={data}
-            options={options}
-            width={"100%"}
-            height={"500px"}
-        />
-    );
-}
-
-export function WelcomeLine() {
-    return (
-        <Chart
-            chartType="LineChart"
-            data={dataMyLine}
-            options={optionsMyLine}
-            width={"100%"}
-            height={"500px"}
-        />
-    );
-}
+export const dataBar = [
+    ["Year", "Sales", "Expenses", "Profit"],
+    ["2014", 1000, 400, 200],
+    ["2015", 1170, 460, 250],
+    ["2016", 660, 1120, 300],
+    ["2017", 1030, 540, 350],
+];
+export const optionsBar = {
+    chart: {
+        title: "Company Performance",
+        subtitle: "Sales, Expenses  , and Profit: 2014-2017",
+    },
+};
 
 export const Js2 = {
     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -93,45 +83,39 @@ export const Js2 = {
 
 export function ControlledCarousel() {
     return (
-        <Carousel variant={"dark"}>
-            <Carousel.Item>
-                <div>
-                    {/*<Chart*/}
-                    {/*    chartType="LineChart"*/}
-                    {/*    data={dataMyLine}*/}
-                    {/*    options={optionsMyLine}*/}
-                    {/*    width={"100%"}*/}
-                    {/*    height={"500px"}*/}
-                    {/*/>*/}
-                    <Pie data={Js2}/>
-
-                </div>
-            </Carousel.Item>
-
-            <Carousel.Item>
-                {/*<Chart*/}
-                {/*    chartType="PieChart"*/}
-                {/*    data={data}*/}
-                {/*    options={options}*/}
-                {/*    width={"100%"}*/}
-                {/*    height={"500px"}*/}
-                {/*/>*/}
-                <Pie data={Js2} className={"chartJs2"}/>
-
-            </Carousel.Item>
-
-            <Carousel.Item>
-                {/*<Chart*/}
-                {/*    chartType="LineChart"*/}
-                {/*    data={dataMyLine}*/}
-                {/*    options={optionsMyLine}*/}
-                {/*    width={"100%"}*/}
-                {/*    height={"500px"}*/}
-                {/*/>*/}
-                <Pie data={Js2} className={"chartJs2"}/>
-
-            </Carousel.Item>
-        </Carousel>
+        <Card className={"border border-dark backColor3 text-white centerCard"}>
+            <Card.Header className={"centerText textSize text-white"}>Sample charts You can create on this page</Card.Header>
+            <Card.Body className={"borderless"} variant={"dark"}>
+                <Card className={"borderless backColor3 text-white centerCard"}>
+                    <Chart
+                        chartType="LineChart"
+                        data={dataMyLine}
+                        options={optionsMyLine}
+                        width={"100%"}
+                        height={"500px"}
+                    />
+                    <br/>
+                    <Chart
+                        chartType="PieChart"
+                        data={data}
+                        options={options}
+                        width={"100%"}
+                        height={"500px"}
+                    />
+                    <br/>
+                    <Card>
+                        <Chart
+                            chartType="Bar"
+                            width="100%"
+                            height="500px"
+                            data={dataBar}
+                            options={optionsBar}
+                        />
+                    </Card>
+                </Card>
+                <br/>
+            </Card.Body>
+        </Card>
     );
 }
 
@@ -139,138 +123,30 @@ export default class Welcome extends Component{
 
     render(){
         return(
-            // <Col>
-            //     <div className='text-lg-center container-fluid p-5 backColor2'>
-            //         <h1 className="display-2">Welcome to Charts.io</h1>
-            //         <p className="lead">Create your own charts, taking control of your own money!</p>
-            //     </div>
-            //     <br/>
-            //     <div className={"backColor2"}>
-            //         <br/>
-            //         <br/>
-            //         {App()}
-            //         {/*{WelcomeLine()}*/}
-            //     </div>
-            //     <br/>
-            //     <br/>
-            // </Col>
             <Col>
-                <div className='text-lg-center container-fluid p-5 backColor2'>
-                    <h1 className="display-2">Welcome to Charts.io</h1>
-                    <p className="lead">Create your own charts, taking control of your own money!</p>
-                </div>
+                <Carousel>
+                    <Carousel.Item interval={50000}>
+                        <div className='text-lg-center container-fluid p-5 backColor2 text-white'>
+                            <h1 className="display-2">Welcome to Charts.io</h1>
+                            <p className="lead">Create your own charts, taking control of your own money!</p>
+                        </div>
+                    </Carousel.Item>
+                    <Carousel.Item interval={10000}>
+                        <div className='text-lg-center container-fluid p-5 backColor2 text-white'>
+                            <h1 className="display-2">Make amazing charts </h1>
+                            <p className="lead">Store information that You think are important</p>
+                        </div>
+                    </Carousel.Item>
+                    <Carousel.Item interval={10000}>
+                        <div className='text-lg-center container-fluid p-5 backColor2 text-white'>
+                            <h1 className="display-2">Save charts as CSV files! </h1>
+                            <p className="lead">You can save your charts and send them as csv file</p>
+                        </div>
+                    </Carousel.Item>
+                </Carousel>
                 <br/>
                 {ControlledCarousel()}
             </Col>
         );
     }
  }
-
-// const UserProfiles  = () => {
-//
-//     const [dataIncomes, setDataIncomes] = useState([]);
-//     const [dataOutcomes, setDataOutcomes] = useState([]);
-//     const [date, setDate] = useState([]);
-//
-//     const fetchUserProfiles = () => {
-//         axios.get("http://localhost:8080/rest/" + localStorage.getItem("login"))
-//             .then(res => {
-//                 setDataIncomes(res.data.incomes);
-//                 setDataOutcomes(res.data.outcomes);
-//                 console.log(res);
-//             })
-//     };
-//
-//     useEffect(() => {
-//         fetchUserProfiles();
-//     }, []);
-//
-//     ChartJS.register(
-//         CategoryScale,
-//         LinearScale,
-//         PointElement,
-//         BarElement,
-//         LineElement,
-//         Title,
-//         Tooltip,
-//         Legend
-//     );
-//
-//
-//     const label = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-//
-//     const valueDataIncomes = [];
-//     const valueDataOutcomes = [];
-//
-//     dataIncomes.map((user) => valueDataIncomes.push(user.value));
-//     dataOutcomes.map((user) => valueDataOutcomes.push(user.value));
-//
-//
-//     const data = {
-//
-//         labels: label,
-//
-//         datasets: [
-//             {
-//                 label: 'Incomes',
-//                 data: valueDataIncomes,
-//                 backgroundColor: 'rgba(53, 162, 235, 0.5)',
-//
-//             },
-//             {
-//                 label: 'Outcomes',
-//                 data: valueDataOutcomes,
-//                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
-//             },
-//         ],
-//     };
-//
-//     const options = {
-//         responsive: true,
-//         plugins: {
-//             legend: {
-//                 position: 'top',
-//                 labels: {
-//                     color: "white",
-//                 },
-//                 title: {
-//                     display: true,
-//                     text: 'Chart.js Line Chart',
-//                     color: "white",
-//                     font: {
-//                         size: 14
-//                     }
-//                 },
-//             },
-//         }
-//     };
-//
-//     return (
-//         <Col>
-//             <div className="col-md-4">
-//                 <Form.Group controlId="dob">
-//                     <Form.Label>Select Date</Form.Label>
-//                     <Form.Control type="date" name="dob" placeholder="Date of Birth" />
-//                 </Form.Group>
-//             </div>
-//             <br/>
-//             <Line options={options} data={data}/>
-//             <br/>
-//             <Bar options={options} data={data}/>
-//             <br/>
-//             <br/>
-//         </Col>
-//     );
-// };
-//
-//
-// function Welcome() {
-//     return (
-//         <div className='ChartsList'>
-//             <UserProfiles />
-//         </div>
-//     );
-// }
-//
-//
-// export default Welcome;

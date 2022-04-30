@@ -146,10 +146,10 @@ export default class Outcomes extends Component{
         return(
              <div>
                     <div style={{"display":this.state.show ? "block" : "none"}}>
-                        <ToastIn children={{show:this.state.show, message:'Outcomes Deleted Successfully'}}/>
+                        <ToastIn children={{show:this.state.show, message:'Expenses Deleted Successfully'}}/>
                     </div>
                      <div style={{"display":this.state.myError ? "block" : "none"}}>
-                         <CantFind children={{myError:this.state.myError, message: "Can't find any Outcomes"}}/>
+                         <CantFind children={{myError:this.state.myError, message: "Can't find any Expenses"}}/>
                      </div>
                 <Card className={"border border-dark bg-dark text-white"}>
                     <Card.Header>
@@ -175,7 +175,7 @@ export default class Outcomes extends Component{
                         <Table bordered hover striped variant="dark">
                             <thead>
                             <tr>
-                                <th>Outcomes</th>
+                                <th>Expenses</th>
                                 <th>Values</th>
                                 <th onClick={() => this.sortData()}>Date <div className={this.state.sortToggle === "down" ? "arrow arrow-down" : "arrow arrow-up"}> </div></th>
                                 <th>Action</th>
