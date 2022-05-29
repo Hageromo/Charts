@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Card, Carousel, Col} from "react-bootstrap";
 import {Chart} from "react-google-charts";
-import "./charts.css"
+import "../NewCharts/charts.css"
 import { Pie } from 'react-chartjs-2';
 
 

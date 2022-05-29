@@ -3,8 +3,8 @@ import {Card, Table, Col, ButtonGroup, Button} from "react-bootstrap";
 import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faList, faEdit, faTrash} from '@fortawesome/free-solid-svg-icons';
-import ToastIn from "./Data/ToastIn";
-import MyToast from "./Data/MyToast";
+import ToastIn from "../Data/ToastIn";
+import MyToast from "../Data/MyToast";
 import {Link} from "react-router-dom";
 
 

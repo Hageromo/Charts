@@ -6,20 +6,20 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import NavigationBar from './components/NavigationBar';
-import Welcome from './components/Welcome';
-import ChartsList from './components/ChartsList';
-import Footer from './components/Footer';
-import NewCharts from './components/NewCharts';
-import Results from './components/Results';
-import Contact from './components/Contact';
+import NavigationBar from './components/Navigation/NavigationBar';
+import Welcome from './components/Contact/Welcome';
+import ChartsList from './components/Results/ChartsList';
+import Footer from './components/Navigation/Footer';
+import NewCharts from './components/NewCharts/NewCharts';
+import Results from './components/Results/Results';
+import Contact from './components/Contact/Contact';
 import Incomes from "./components/Results/Incomes";
 import Outcomes from "./components/Results/Outcomes";
 import NewIncomes from "./components/NewCharts/NewIncomes";
 import NewOutcomes from "./components/NewCharts/NewOutcomes";
 import Login from "./components/Login/Login";
 import Register from "./components/Login/Register";
-import CustomChart from "./components/CustomChart";
+import CustomChart from "./components/CustomCharts/CustomChart";
 function App() {
 
   const marginTop = {

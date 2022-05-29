@@ -3,7 +3,7 @@ import {Button, Card, Col, Form, Row, Table} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChartLine, faList, faSave, faUndo} from "@fortawesome/free-solid-svg-icons";
 import {Chart} from "react-google-charts";
-import "../index.css"
+import "../../index.css"
 import {faCheck} from "@fortawesome/free-solid-svg-icons/faCheck";
 import axios from "axios";
 import {CSVLink} from 'react-csv';

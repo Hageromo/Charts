@@ -6,7 +6,7 @@ import MyToast from "../Data/MyToast";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faList, faUndo, faSave, faPlusSquare, faEdit} from "@fortawesome/free-solid-svg-icons";
 import {Link, MemoryRouter} from "react-router-dom";
-import "../charts.css"
+import "./charts.css"
 
 export default class NewIncomes extends Component{
 

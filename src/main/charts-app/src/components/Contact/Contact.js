@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { Chart } from "react-google-charts";
 import {Button, Card, Col, Dropdown, DropdownButton, Form, FormControl, InputGroup, Row, Table} from "react-bootstrap";
-import "../index.css"
+import "../../index.css"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faList, faSearch, faTimes} from "@fortawesome/free-solid-svg-icons";
 
