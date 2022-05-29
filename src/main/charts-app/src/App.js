@@ -1,6 +1,6 @@
 //import React, {useState, useEffect} from 'react';
 //import logo from './logo.svg';
-import './components/Results/App.css';
+import '../public/App.css';
 //import axios from 'axios';
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
@@ -10,7 +10,7 @@ import NavigationBar from './components/Navigation/NavigationBar';
 import Welcome from './components/Contact/Welcome';
 import ChartsList from './components/Results/ChartsList';
 import Footer from './components/Navigation/Footer';
-import NewCharts from './components/NewCharts/NewCharts';
+import NewCharts from '../public/idk/NewCharts';
 import Results from './components/Results/Results';
 import Contact from './components/Contact/Contact';
 import Incomes from "./components/Results/Incomes";

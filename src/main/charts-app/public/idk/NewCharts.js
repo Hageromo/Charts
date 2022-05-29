@@ -1,8 +1,8 @@
 import React, {Component, useEffect, useState} from "react";
 import { Card, Form, Button, Row, Col } from "react-bootstrap";
 import axios from 'axios';
-import ToastIn from "../Data/ToastIn";
-import MyToast from "../Data/MyToast";
+import ToastIn from "../../src/components/Data/ToastIn";
+import MyToast from "../../src/components/Data/MyToast";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faList, faUndo, faSave, faPlusSquare, faEdit} from "@fortawesome/free-solid-svg-icons";
 import {Link, MemoryRouter} from "react-router-dom";

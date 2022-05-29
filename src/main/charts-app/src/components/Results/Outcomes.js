@@ -12,7 +12,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import ToastIn from "../Data/ToastIn";
 import {Link} from "react-router-dom";
-import './App.css'
+import '../../../public/App.css'
 import CantFind from "../Data/CantFind";
 
 export default class Outcomes extends Component{
