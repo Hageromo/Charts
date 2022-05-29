@@ -1,4 +1,4 @@
-package com.charts.charts.Controller.Security;
+package com.charts.charts.Security;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

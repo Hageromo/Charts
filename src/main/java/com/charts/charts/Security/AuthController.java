@@ -1,4 +1,4 @@
-package com.charts.charts.Controller.Security;
+package com.charts.charts.Security;
 
 
 import com.charts.charts.Document.User;

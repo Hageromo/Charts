@@ -1,5 +1,6 @@
 package com.charts.charts.Domain;
 
+import com.charts.charts.Config.SecurityConfiguration;
 import com.charts.charts.Document.Incomes;
 import com.charts.charts.Document.Outcomes;
 import com.charts.charts.Document.User;
@@ -8,11 +9,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -22,12 +24,20 @@ public class UserService implements UserDetailsService {
 
 
     private final UserRepository userRepository;
+//    private final PasswordEncoder passwordEncoder;
+
+//    public UserService(UserRepository userRepository){
+//        this.userRepository = userRepository;
+//        passwordEncoder = new BCryptPasswordEncoder();
+//    }
 
     public List<User> getAllUsers(){
         return userRepository.findAll();
     }
 
     public User addUser(User user){
+//        String encodedPassword = this.passwordEncoder.encode(user.getPassword());
+//        user.setPassword(encodedPassword);
         return userRepository.save(new User(user.getUserName(), user.getPassword(), user.getEmail()));
     }
 
