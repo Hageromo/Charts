@@ -13,6 +13,7 @@ import java.util.List;
 public interface UserRepository extends MongoRepository<User, String> {
     User findByUserName(String userName);
 
+
     @Query("{'Incomes.date':?0}")
     List<Incomes> findByUserNameAndDate(LocalDate date);
 }

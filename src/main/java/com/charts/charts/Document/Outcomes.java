@@ -5,7 +5,8 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Data public class Outcomes {
+@Data
+public class Outcomes {
 
     private int id;
     private LocalDate date;

@@ -14,7 +14,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import MyToast from "../Data/MyToast";
 import {Link} from "react-router-dom";
-import '../../../public/App.css'
+import '../../App.css'
 import '../Data/CantFind'
 import CantFind from "../Data/CantFind";
 import {connect} from "react-redux";

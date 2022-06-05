@@ -11,7 +11,7 @@ class Footer extends React.Component{
                 <Container>
                     <Col lg={12} className="text-center text-muted">
                         <div>
-                           {fullYear-1} - {fullYear}, All Rights Reserved by Jacob Newcomer 
+                           {fullYear-1} - {fullYear}, All Rights Reserved by Jakub Przybysz
                         </div>
                     </Col>
                 </Container>
