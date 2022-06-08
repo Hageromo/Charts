@@ -1,11 +1,10 @@
-import React, {Component, useEffect, useState} from "react";
-import { Card, Form, Button, Row, Col } from "react-bootstrap";
+import React, {Component} from "react";
+import {Button, Card, Col, Form, Row} from "react-bootstrap";
 import axios from 'axios';
-import ToastIn from "../Data/ToastIn";
 import MyToast from "../Data/MyToast";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faList, faUndo, faSave, faPlusSquare, faEdit} from "@fortawesome/free-solid-svg-icons";
-import {Link, MemoryRouter} from "react-router-dom";
+import {faEdit, faList, faPlusSquare, faSave, faUndo} from "@fortawesome/free-solid-svg-icons";
+import {Link} from "react-router-dom";
 import "../../idk/charts.css"
 
 export default class NewIncomes extends Component{

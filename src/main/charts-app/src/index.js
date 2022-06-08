@@ -4,19 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from "react-redux";
-import {createStore, applyMiddleware } from "redux";
+import {applyMiddleware, createStore} from "redux";
 import rootReducer from "./components/Login/auth/rootReducer";
 import thunk from "redux-thunk";
 
 export  * from './components/Login/auth/authActions';
-
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>,
-//   document.getElementById('root')
-//
-// );
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
@@ -27,7 +19,4 @@ ReactDOM.render(
     , document.getElementById('root')
 )
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

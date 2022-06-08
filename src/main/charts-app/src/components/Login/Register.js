@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Alert, Button, Card, Col, Form, FormControl, InputGroup, Row} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEnvelope, faLock, faSignInAlt, faUndo, faUser, faUserPlus} from "@fortawesome/free-solid-svg-icons";
+import {faEnvelope, faLock, faSignInAlt, faUndo, faUser} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 class Register extends Component {

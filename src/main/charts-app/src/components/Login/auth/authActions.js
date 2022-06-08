@@ -1,5 +1,4 @@
-import {LOGIN_REQUEST,LOGOUT_REQUEST, FAILURE, SUCCESS} from "./authTypes";
-import axios from "axios";
+import {FAILURE, LOGIN_REQUEST, LOGOUT_REQUEST, SUCCESS} from "./authTypes";
 
 export const authenticateUser = (email, password) => {
 

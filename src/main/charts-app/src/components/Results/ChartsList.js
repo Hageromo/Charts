@@ -1,9 +1,9 @@
 import React from "react";
 import {Chart} from "react-google-charts";
-import {Button, Card, Dropdown, DropdownButton, Form, FormControl, InputGroup, Table} from "react-bootstrap";
+import {Card, Dropdown, DropdownButton, InputGroup, Table} from "react-bootstrap";
 import "../../index.css"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faList, faSearch, faTimes} from "@fortawesome/free-solid-svg-icons";
+import {faList} from "@fortawesome/free-solid-svg-icons";
 import {ArcElement, Chart as ChartJS, Legend, Tooltip} from 'chart.js';
 import axios from "axios";
 

@@ -1,9 +1,9 @@
 import React, {Component} from "react";
-import {Navbar, Nav, NavDropdown, Col} from "react-bootstrap";
+import {Nav, Navbar, NavDropdown} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Link} from 'react-router-dom';
 import "../../App.css"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSignInAlt, faUserPlus} from "@fortawesome/free-solid-svg-icons";
 import {logoutUser} from "../Login/auth/authActions";
 import {connect} from "react-redux";

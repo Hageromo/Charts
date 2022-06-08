@@ -1,16 +1,17 @@
 import React, {Component} from "react";
-import {Card, Table, Col, ButtonGroup, Button, InputGroup, FormControl, Form, Row} from "react-bootstrap";
+import {Button, ButtonGroup, Card, Form, FormControl, InputGroup, Table} from "react-bootstrap";
 import axios from 'axios';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
-    faList,
     faEdit,
-    faTrash,
     faFastBackward,
     faFastForward,
-    faStepForward,
+    faList,
+    faSearch,
     faStepBackward,
-    faSearch, faTimes
+    faStepForward,
+    faTimes,
+    faTrash
 } from '@fortawesome/free-solid-svg-icons';
 import MyToast from "../Data/MyToast";
 import {Link} from "react-router-dom";

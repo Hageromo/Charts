@@ -1,23 +1,9 @@
 import React, {Component} from "react";
-import {
-    Row,
-    Col,
-    Card,
-    Form,
-    InputGroup,
-    FormControl,
-    Button,
-    Alert,
-} from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faSignInAlt,
-    faEnvelope,
-    faLock,
-    faUndo,
-} from "@fortawesome/free-solid-svg-icons";
+import {Alert, Button, Card, Col, Form, FormControl, InputGroup, Row,} from "react-bootstrap";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faEnvelope, faLock, faSignInAlt, faUndo,} from "@fortawesome/free-solid-svg-icons";
 import {authenticateUser} from "./auth/authActions";
-import {connect, useDispatch} from "react-redux";
+import {connect} from "react-redux";
 import axios from "axios";
 
 
@@ -43,20 +29,6 @@ export class Login extends Component {
     };
 
     validateUser = () => {
-        // this.props.authenticateUser(this.state.email, this.state.password)
-        // setTimeout(() => {
-        //     if(localStorage.getItem("key") === "true") {
-        //         this.state.wasLogged = true
-        //         localStorage.setItem("state", this.state.wasLogged)
-        //         localStorage.setItem("login", this.state.email)
-        //         localStorage.setItem("password", this.state.password)
-        //         window.location.assign("http://localhost:3000/");
-        //     }else {
-        //         console.log("nie działa")
-        //         this.resetLogin();
-        //         this.setState({"error": "Invalid email or password"})
-        //     }
-        // }, )
 
         axios.get("http://localhost:8080/rest/"+ this.state.email +"/" + this.state.password)
             .then((resp) => {

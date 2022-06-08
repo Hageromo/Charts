@@ -3,8 +3,8 @@
 import './App.css';
 //import axios from 'axios';
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {Col, Container, Row} from 'react-bootstrap';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 import NavigationBar from './components/Navigation/NavigationBar';
 import Welcome from './components/Contact/Welcome';
@@ -20,6 +20,7 @@ import NewOutcomes from "./components/NewCharts/NewOutcomes";
 import Login from "./components/Login/Login";
 import Register from "./components/Login/Register";
 import CustomChart from "./components/CustomCharts/CustomChart";
+
 function App() {
 
   const marginTop = {
@@ -61,48 +62,5 @@ function App() {
 
   );
 }
-
-
-
-
-
-// const UserProfiles = () => {
-  
-//   const [userProfiles, setUserProfiles] = useState([]);
-
-
-//   const fetchUserProfiles = () => {
-//     axios.get("http://localhost:8080/rest/all")
-//     .then(res => {
-//       console.log(res);
-//       setUserProfiles(res.data);
-//     });
-//   };
-
-//   useEffect(() => {
-//     fetchUserProfiles();
-//   }, []);
-
-//   return userProfiles.map((userProfile, index) => {
-//     return (
-//       <div key={index}>
-//         <br/>
-//         <br/>
-//         <h1>{userProfile.userName}</h1>
-//         <p1>{userProfile.id}</p1>
-//         <br/>
-//       </div>
-//     );
-//   });
-// };
-
-
-// function App() {
-//   return (
-//     <div className='App'>
-//       <UserProfiles />
-//     </div>
-//   );
-// }
 
 export default App;
