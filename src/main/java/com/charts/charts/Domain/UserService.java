@@ -1,9 +1,16 @@
 package com.charts.charts.Domain;
 
-import com.charts.charts.Controller.Incomes;
-import com.charts.charts.Controller.Outcomes;
-import com.charts.charts.Controller.User;
+import com.charts.charts.Config.SecurityConfiguration;
+import com.charts.charts.Document.Incomes;
+import com.charts.charts.Document.Outcomes;
+import com.charts.charts.Document.User;
+import com.charts.charts.Repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -13,15 +20,24 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class UserService {
+public class UserService implements UserDetailsService {
+
 
     private final UserRepository userRepository;
+//    private final PasswordEncoder passwordEncoder;
+
+//    public UserService(UserRepository userRepository){
+//        this.userRepository = userRepository;
+//        passwordEncoder = new BCryptPasswordEncoder();
+//    }
 
     public List<User> getAllUsers(){
         return userRepository.findAll();
     }
 
     public User addUser(User user){
+//        String encodedPassword = this.passwordEncoder.encode(user.getPassword());
+//        user.setPassword(encodedPassword);
         return userRepository.save(new User(user.getUserName(), user.getPassword(), user.getEmail()));
     }
 
@@ -70,42 +86,21 @@ public class UserService {
 
     public User updateUserOutcomes(User user, Outcomes datas, int id){
 
-        datas.setId(id);
-        ArrayList<Outcomes> outcomes = new ArrayList<>();
-        outcomes.add(datas);
-
-        user.getOutcomes().remove(user.getOutcomes().stream()
-                .filter(index -> index.getId() == id)
-                .findAny()
-                .orElse(null));
-
-
-        if(user.getOutcomes() == null){
-            user.setOutcomes(outcomes);
-        }else{
-            user.getOutcomes().add(user.getOutcomes().size(),datas);
-        }
-
+        Outcomes temp = user.getOutcomes().stream().filter(e -> e.getId() == id).findAny().orElse(null);
+        temp.setId(id);
+        temp.setOutcomes(datas.getOutcomes());
+        temp.setValue(datas.getValue());
+        temp.setDate(datas.getDate());
         return userRepository.save(user);
     }
 
     public User updateUserIncomes(User user, Incomes datas, int id){
 
-        datas.setId(id);
-        ArrayList<Incomes> incomes = new ArrayList<>();
-        incomes.add(datas);
-
-        user.getIncomes().remove(user.getIncomes().stream()
-                .filter(index -> index.getId() == id)
-                .findAny()
-                .orElse(null));
-
-        if(user.getIncomes() == null){
-            user.setIncomes(incomes);
-        }else{
-            user.getIncomes().add(user.getIncomes().size(),datas);
-        }
-
+        Incomes temp = user.getIncomes().stream().filter(e -> e.getId() == id).findAny().orElse(null);
+        temp.setId(id);
+        temp.setIncomes(datas.getIncomes());
+        temp.setValue(datas.getValue());
+        temp.setDate(datas.getDate());
         return userRepository.save(user);
     }
 
@@ -150,10 +145,9 @@ public class UserService {
     public BigDecimal sumOfIncomes(User user){
 
         BigDecimal sumOfIncomes = user.getIncomes().stream()
-                .map(Incomes::getIncomes)
-                .map(HashMap::values)
-                .map(x -> x.stream().toList().stream().reduce(BigDecimal.ZERO, BigDecimal::add))
+                .map(Incomes::getValue)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
+
 
         return sumOfIncomes;
     }
@@ -161,9 +155,7 @@ public class UserService {
     public BigDecimal sumOfOutcomes(User user){
 
         BigDecimal sumOfOutcomes = user.getOutcomes().stream()
-                .map(Outcomes::getOutcomes)
-                .map(HashMap::values)
-                .map(x -> x.stream().toList().stream().reduce(BigDecimal.ZERO, BigDecimal::add))
+                .map(Outcomes::getValue)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         return sumOfOutcomes;
@@ -211,9 +203,7 @@ public class UserService {
         List<Outcomes> outcomesByMonth = findOutcomesByMonth(user, date);
 
         BigDecimal sumOutcomesByMonth = outcomesByMonth.stream()
-                .map(Outcomes::getOutcomes)
-                .map(HashMap::values)
-                .map(x -> x.stream().toList().stream().reduce(BigDecimal.ZERO, BigDecimal::add))
+                .map(Outcomes::getValue)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         return sumOutcomesByMonth;
@@ -223,9 +213,7 @@ public class UserService {
         List<Incomes> incomesByMonth = findIncomesByMonth(user, date);
 
         BigDecimal sumIncomesByMonth = incomesByMonth.stream()
-                .map(Incomes::getIncomes)
-                .map(HashMap::values)
-                .map(x -> x.stream().toList().stream().reduce(BigDecimal.ZERO, BigDecimal::add))
+                .map(Incomes::getValue)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         return sumIncomesByMonth;
@@ -235,9 +223,7 @@ public class UserService {
         List<Incomes> incomesByYear = findIncomesByYear(user, date);
 
         BigDecimal sumIncomesByYear = incomesByYear.stream()
-                .map(Incomes::getIncomes)
-                .map(HashMap::values)
-                .map(x -> x.stream().toList().stream().reduce(BigDecimal.ZERO, BigDecimal::add))
+                .map(Incomes::getValue)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         return sumIncomesByYear;
@@ -247,12 +233,82 @@ public class UserService {
         List<Outcomes> outcomesByYear = findOutcomesByYear(user, date);
 
         BigDecimal sumOutcomesByYear = outcomesByYear.stream()
-                .map(Outcomes::getOutcomes)
-                .map(HashMap::values)
-                .map(x -> x.stream().toList().stream().reduce(BigDecimal.ZERO, BigDecimal::add))
+                .map(Outcomes::getValue)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         return sumOutcomesByYear;
     }
 
+    public Map<String, BigDecimal> uniqueIncomes(User user){
+
+        Map<String, BigDecimal> unique = user.getIncomes().stream()
+                .collect(Collectors.toMap(
+                   Incomes::getIncomes,
+                   Incomes::getValue,
+                   BigDecimal::add
+                ));
+
+        return unique;
+    }
+
+    public Map<String, BigDecimal> uniqueOutcomes(User user){
+
+        Map<String, BigDecimal> unique = user.getOutcomes().stream()
+                .collect(Collectors.toMap(
+                        Outcomes::getOutcomes,
+                        Outcomes::getValue,
+                        BigDecimal::add
+                ));
+
+        return unique;
+    }
+
+    public List<Incomes> findIncomesByExactTime(User user, LocalDate dateSince, LocalDate dateTo) throws Exception {
+
+        List<Incomes> dateInOrder =  user.getIncomes()
+                .stream()
+                .sorted(Comparator.comparing(Incomes::getDate))
+                .collect(Collectors.toList());
+
+        List<Incomes> incomes = dateInOrder.stream()
+                .filter(day -> day.getDate().isBefore(dateTo.plusDays(1)))
+                .filter(day -> day.getDate().isAfter(dateSince.minusDays(1)))
+                .collect(Collectors.toList());
+
+        if(dateSince.isAfter(dateTo)){
+            throw new Exception("Wrong date order");
+        }
+        return incomes;
+    }
+
+    public List<Outcomes> findOutcomesByExactTime(User user, LocalDate dateSince, LocalDate dateTo) throws Exception {
+
+        List<Outcomes> dateInOrder =  user.getOutcomes()
+                .stream()
+                .sorted(Comparator.comparing(Outcomes::getDate))
+                .collect(Collectors.toList());
+
+        List<Outcomes> outcomes = dateInOrder.stream()
+                .filter(day -> day.getDate().isBefore(dateTo.plusDays(1)))
+                .filter(day -> day.getDate().isAfter(dateSince.minusDays(1)))
+                .collect(Collectors.toList());
+
+        if(dateSince.isAfter(dateTo)){
+            throw new Exception("Wrong date order");
+        }
+        return outcomes;
+    }
+
+    
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User foundedUser = userRepository.findByUserName(username);
+        if(foundedUser == null) {
+            return null;
+        }
+        String userName = foundedUser.getUserName();
+        String password = foundedUser.getPassword();
+
+        return new org.springframework.security.core.userdetails.User(userName, password, new ArrayList<>());
+    }
 }

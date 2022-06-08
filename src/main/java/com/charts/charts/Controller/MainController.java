@@ -1,6 +1,10 @@
 package com.charts.charts.Controller;
 
+import com.charts.charts.Document.Incomes;
+import com.charts.charts.Document.Outcomes;
+import com.charts.charts.Document.User;
 import com.charts.charts.Domain.*;
+import com.charts.charts.Repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -10,11 +14,15 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @AllArgsConstructor
 @RequestMapping("/rest")
+@CrossOrigin("http://localhost:3000")   //Don't do that
 public class MainController {
 
     private final UserService userService;
@@ -25,9 +33,14 @@ public class MainController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/{user}")
-    public User user(@PathVariable String user){
-        return userRepository.findByUserName(user);
+    @GetMapping("/{user}/{password}")
+    public ResponseEntity<User> user(@PathVariable String user, @PathVariable String password){
+        User myUser = userRepository.findByUserName(user);
+        if(myUser.getPassword().equals(password)){
+            return new ResponseEntity<>(myUser, HttpStatus.CREATED);
+        }else{
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping("/add")
@@ -222,4 +235,141 @@ public class MainController {
         }
     }
 
+    @GetMapping("/{user}/unique/incomes")
+    public Map<String, BigDecimal> uniqueIncomes(@PathVariable String user) throws Exception {
+
+        try {
+            User myUser = userRepository.findByUserName(user);
+            return userService.uniqueIncomes(myUser);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/{user}/unique/outcomes")
+    public Map<String, BigDecimal> uniqueOutcomes(@PathVariable String user) throws Exception {
+
+        try {
+            User myUser = userRepository.findByUserName(user);
+            return userService.uniqueOutcomes(myUser);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/{user}/incomes/all")
+    public List<Incomes> usersIncomes(@PathVariable String user) throws Exception {
+
+        try {
+            User myUser = userRepository.findByUserName(user);
+            return myUser.getIncomes();
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/{user}/outcomes/all")
+    public List<Outcomes> usersOutcomes(@PathVariable String user) throws Exception {
+
+        try {
+            User myUser = userRepository.findByUserName(user);
+            return myUser.getOutcomes();
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/{user}/incomes/{id}")
+    public Incomes incomesById(@PathVariable String user, @PathVariable int id) throws Exception{
+        try{
+            User myUser = userRepository.findByUserName(user);
+            return myUser.getIncomes().stream().filter(e -> e.getId() == id).findFirst().get();
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/{user}/outcomes/{id}")
+    public Outcomes outcomesById(@PathVariable String user, @PathVariable int id) throws Exception{
+        try{
+            User myUser = userRepository.findByUserName(user);
+            return myUser.getOutcomes().stream().filter(e -> e.getId() == id).findFirst().get();
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    //Endpoints that return incomes and outcomes in date order
+
+    @GetMapping({"/data/{user}/incomes/up"})
+    public List<Incomes> incomesByDateUp(@PathVariable String user) throws Exception{
+        try{
+            User myUser = userRepository.findByUserName(user);
+
+            return myUser.getIncomes()
+                    .stream()
+                    .sorted(Comparator.comparing(Incomes::getDate))
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping({"/data/{user}/incomes/down"})
+    public List<Incomes> incomesByDateDown(@PathVariable String user) throws Exception{
+        try{
+            User myUser = userRepository.findByUserName(user);
+
+            return myUser.getIncomes()
+                    .stream()
+                    .sorted(Comparator.comparing(Incomes::getDate)
+                            .reversed())
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping({"/data/{user}/outcomes/up"})
+    public List<Outcomes> outcomesByDateUp(@PathVariable String user) throws Exception{
+        try{
+            User myUser = userRepository.findByUserName(user);
+
+            return myUser.getOutcomes()
+                    .stream()
+                    .sorted(Comparator.comparing(Outcomes::getDate))
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping({"/data/{user}/outcomes/down"})
+    public List<Outcomes> outcomesByDateDown(@PathVariable String user) throws Exception{
+        try{
+            User myUser = userRepository.findByUserName(user);
+
+            return myUser.getOutcomes()
+                    .stream()
+                    .sorted(Comparator.comparing(Outcomes::getDate)
+                            .reversed())
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/{user}/in/exact")
+    public List<Incomes> getIncomesInDate(@PathVariable String user, @RequestParam(name = "dateSince") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateSince,
+    @RequestParam(name = "dateTo") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateTo) throws Exception{
+        User myUser = userRepository.findByUserName(user);
+        return userService.findIncomesByExactTime(myUser, dateSince, dateTo);
+    }
+
+    @GetMapping("/{user}/out/exact")
+    public List<Outcomes> getOutcomesInDate(@PathVariable String user, @RequestParam(name = "dateSince") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateSince,
+    @RequestParam(name = "dateTo") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateTo) throws Exception{
+        User myUser = userRepository.findByUserName(user);
+        return userService.findOutcomesByExactTime(myUser, dateSince, dateTo);
+    }
 }

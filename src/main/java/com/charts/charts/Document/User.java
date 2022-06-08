@@ -1,4 +1,4 @@
-package com.charts.charts.Controller;
+package com.charts.charts.Document;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;

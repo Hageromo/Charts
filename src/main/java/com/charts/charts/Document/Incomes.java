@@ -1,20 +1,21 @@
-package com.charts.charts.Controller;
+package com.charts.charts.Document;
 
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.HashMap;
 
 @Data
 public class Incomes {
 
     private Integer id;
     private LocalDate date;
-    private HashMap<String, BigDecimal> incomes;
+    private String incomes;
+    private BigDecimal value;
 
-    public Incomes(LocalDate date, HashMap<String, BigDecimal> incomes) {
+    public Incomes(LocalDate date, String incomes, BigDecimal value) {
         this.date = date;
         this.incomes = incomes;
+        this.value = value;
     }
 }
