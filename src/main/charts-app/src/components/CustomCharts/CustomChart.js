@@ -28,20 +28,20 @@ class CustomChart extends React.Component {
         const tempArrOut = []
         const tempDateStack = []
 
-        axios.get("http://localhost:8080/rest/"+ localStorage.getItem("login") +"/in/exact?dateSince="+this.state.dateSince+"&dateTo="+this.state.dateTo)
+        axios.get("https://chartsio.herokuapp.com/rest/"+ localStorage.getItem("login") +"/in/exact?dateSince="+this.state.dateSince+"&dateTo="+this.state.dateTo)
             .then(response => response.data)
             .then((data) => {
                 this.setState({"uniqueIncomes" : data});
             });
 
-        axios.get("http://localhost:8080/rest/"+ localStorage.getItem("login") +"/out/exact?dateSince="+this.state.dateSince+"&dateTo="+this.state.dateTo)
+        axios.get("https://chartsio.herokuapp.com/rest/"+ localStorage.getItem("login") +"/out/exact?dateSince="+this.state.dateSince+"&dateTo="+this.state.dateTo)
             .then(response => response.data)
             .then((data) => {
                 this.setState({"uniqueOutcomes" : data});
             });
 
         for(let localDate = this.state.dateSince.split('-')[0]; localDate <= this.state.dateTo.split('-')[0]; localDate++){
-            axios.get("http://localhost:8080/rest/"+ localStorage.getItem("login") +"/incomes/year?date="+localDate+"-01-01")
+            axios.get("https://chartsio.herokuapp.com/rest/"+ localStorage.getItem("login") +"/incomes/year?date="+localDate+"-01-01")
                 .then(response => response.data)
                 .then((data) => {
                     this.setState({"sumIncomes" : data});
@@ -51,7 +51,7 @@ class CustomChart extends React.Component {
         }
 
         for(let localDate = this.state.dateSince.split('-')[0]; localDate <= this.state.dateTo.split('-')[0]; localDate++){
-            axios.get("http://localhost:8080/rest/"+ localStorage.getItem("login") +"/outcomes/year?date="+localDate+"-01-01")
+            axios.get("https://chartsio.herokuapp.com/rest/"+ localStorage.getItem("login") +"/outcomes/year?date="+localDate+"-01-01")
                 .then(response => response.data)
                 .then((data) => {
                     this.setState({"sumOutcomes" : data});

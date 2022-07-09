@@ -47,7 +47,7 @@ class Incomes extends Component{
     }
 
     findAllData(){
-        axios.get("http://localhost:8080/rest/data/"+ localStorage.getItem("login") +"/incomes/" + this.state.sortToggle)
+        axios.get("https://chartsio.herokuapp.com/rest/data/"+ localStorage.getItem("login") +"/incomes/" + this.state.sortToggle)
             .then(response => response.data)
             .then((data) => {
                 this.setState({user : data});
@@ -55,7 +55,7 @@ class Incomes extends Component{
     }
 
     deleteIncomes = (id) => {
-        axios.delete("http://localhost:8080/rest/delete/in/"+ localStorage.getItem("login") + "/"+id)
+        axios.delete("https://chartsio.herokuapp.com/rest/delete/in/"+ localStorage.getItem("login") + "/"+id)
             .then(response => {
                 if(response.data != null){
                     this.setState({"myShow": true});

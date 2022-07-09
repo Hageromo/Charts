@@ -22,7 +22,7 @@ export default class Results extends Component{
     }
 
     findAllData(){
-        axios.get("http://localhost:8080/rest/" + localStorage.getItem("login"))
+        axios.get("https://chartsio.herokuapp.com/rest/" + localStorage.getItem("login"))
             .then(response => response.data)
             .then((data) => {
                 this.setState({user : data});
@@ -30,7 +30,7 @@ export default class Results extends Component{
     }
 
     deleteIncomes = (id) => {
-      axios.delete("http://localhost:8080/rest/delete/in/"+ localStorage.getItem("login") +"/"+id)
+      axios.delete("https://chartsio.herokuapp.com/rest/delete/in/"+ localStorage.getItem("login") +"/"+id)
           .then(response => {
               if(response.data != null){
                   this.setState({"myShow": true});
@@ -44,7 +44,7 @@ export default class Results extends Component{
     };
 
     deleteOutcomes = (id) => {
-        axios.delete("http://localhost:8080/rest/delete/out/"+ localStorage.getItem("login") +"/"+id)
+        axios.delete("https://chartsio.herokuapp.com/rest/delete/out/"+ localStorage.getItem("login") +"/"+id)
             .then(response => {
                 if(response.data != null){
                     this.setState({"show": true});

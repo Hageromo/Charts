@@ -35,7 +35,7 @@ class ChartsList extends React.Component {
     }
 
     getAllIncomes(){
-        axios.get("http://localhost:8080/rest/"+ localStorage.getItem("login") +"/incomes")
+        axios.get("https://chartsio.herokuapp.com/rest/"+ localStorage.getItem("login") +"/incomes")
             .then(response => response.data)
             .then((data) => {
                 this.setState({incomes : data});
@@ -43,7 +43,7 @@ class ChartsList extends React.Component {
     }
 
     getAllOutcomes(){
-        axios.get("http://localhost:8080/rest/"+ localStorage.getItem("login") +"/outcomes")
+        axios.get("https://chartsio.herokuapp.com/rest/"+ localStorage.getItem("login") +"/outcomes")
             .then(response => response.data)
             .then((data) => {
                 this.setState({outcomes : data});
@@ -51,7 +51,7 @@ class ChartsList extends React.Component {
     }
 
     getAllUniqueIncomes(){
-        axios.get("http://localhost:8080/rest/"+ localStorage.getItem("login") +"/unique/incomes")
+        axios.get("https://chartsio.herokuapp.com/rest/"+ localStorage.getItem("login") +"/unique/incomes")
             .then(response => response.data)
             .then((data) => {
                 this.setState({uniqueIncomes : data});
@@ -59,7 +59,7 @@ class ChartsList extends React.Component {
     }
 
     getAllUniqueOutcomes(){
-        axios.get("http://localhost:8080/rest/"+ localStorage.getItem("login") +"/unique/outcomes")
+        axios.get("https://chartsio.herokuapp.com/rest/"+ localStorage.getItem("login") +"/unique/outcomes")
             .then(response => response.data)
             .then((data) => {
                 this.setState({uniqueOutcomes : data});

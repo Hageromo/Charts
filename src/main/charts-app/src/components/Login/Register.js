@@ -34,7 +34,7 @@ class Register extends Component {
             password: this.state.password,
         };
 
-        axios.post("http://localhost:8080/rest/add", data)
+        axios.post("https://chartsio.herokuapp.com/rest/add", data)
             .then(res => {
                 if(res.status === 201){
                     if(res.data.password.length < 4){

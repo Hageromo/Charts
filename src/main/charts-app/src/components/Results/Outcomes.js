@@ -46,7 +46,7 @@ export default class Outcomes extends Component{
     }
 
     findAllData(){
-        axios.get("http://localhost:8080/rest/data/" + localStorage.getItem("login") + "/outcomes/" + this.state.sortToggle)
+        axios.get("https://chartsio.herokuapp.com/rest/data/" + localStorage.getItem("login") + "/outcomes/" + this.state.sortToggle)
             .then(response => response.data)
             .then((data) => {
                 this.setState({user : data});
@@ -54,7 +54,7 @@ export default class Outcomes extends Component{
     }
 
     deleteOutcomes = (id) => {
-        axios.delete("http://localhost:8080/rest/delete/out/"+ localStorage.getItem("login") +"/"+id)
+        axios.delete("https://chartsio.herokuapp.com/rest/delete/out/"+ localStorage.getItem("login") +"/"+id)
             .then(response => {
                 if(response.data != null){
                     this.setState({"show": true});

@@ -32,7 +32,7 @@ export default class NewIncomes extends Component{
     }
 
     findIncomesById = (incomesId) => {
-        axios.get("http://localhost:8080/rest/"+ localStorage.getItem("login") +"/incomes/"+incomesId)
+        axios.get("https://chartsio.herokuapp.com/rest/"+ localStorage.getItem("login") +"/incomes/"+incomesId)
             .then(response => {
                 if(response.data != null){
                     this.setState({
@@ -63,7 +63,7 @@ export default class NewIncomes extends Component{
             date: this.state.date,
         };
 
-        axios.post("http://localhost:8080/rest/add/incomes/"+ localStorage.getItem("login"), data)
+        axios.post("https://chartsio.herokuapp.com/rest/add/incomes/"+ localStorage.getItem("login"), data)
             .then(res => {
                 if(res.data != null){
                     this.setState({"myShow": true});
@@ -85,7 +85,7 @@ export default class NewIncomes extends Component{
             date: this.state.date,
         };
 
-        axios.put("http://localhost:8080/rest/update/in/"+ localStorage.getItem("login") +"/"+data.id, data)
+        axios.put("https://chartsio.herokuapp.com/rest/update/in/"+ localStorage.getItem("login") +"/"+data.id, data)
             .then(res => {
                 if(res.data != null){
                     this.setState({"myShow": true, "method":"put"});

@@ -30,7 +30,7 @@ export class Login extends Component {
 
     validateUser = () => {
 
-        axios.get("http://localhost:8080/rest/"+ this.state.email +"/" + this.state.password)
+        axios.get("https://chartsio.herokuapp.com/rest/"+ this.state.email +"/" + this.state.password)
             .then((resp) => {
                 if(resp.status === 201){
                     this.state.wasLogged = true

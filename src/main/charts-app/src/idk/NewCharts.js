@@ -41,7 +41,7 @@ export default class NewCharts extends Component{
     }
 
     findIncomesById = (incomesId) => {
-        axios.get("http://localhost:8080/rest/"+ localStorage.getItem("login") +"/incomes/"+incomesId)
+        axios.get("https://chartsio.herokuapp.com/rest/"+ localStorage.getItem("login") +"/incomes/"+incomesId)
             .then(response => {
                 if(response.data != null){
                     this.setState({
@@ -57,7 +57,7 @@ export default class NewCharts extends Component{
     }
 
     findOutcomesById = (outcomesId) => {
-        axios.get("http://localhost:8080/rest/"+ localStorage.getItem("login") +"/outcomes/"+outcomesId)
+        axios.get("https://chartsio.herokuapp.com/rest/"+ localStorage.getItem("login") +"/outcomes/"+outcomesId)
             .then(response => {
                 if(response.data != null){
                     this.setState({
@@ -90,7 +90,7 @@ export default class NewCharts extends Component{
             date: this.state.date,
         };
 
-        axios.post("http://localhost:8080/rest/add/incomes/"+ localStorage.getItem("login"), data)
+        axios.post("https://chartsio.herokuapp.com/rest/add/incomes/"+ localStorage.getItem("login"), data)
             .then(res => {
                 if(res.data != null){
                     this.setState({"myShow": true});
@@ -112,7 +112,7 @@ export default class NewCharts extends Component{
             date: this.state.dateC,
         };
 
-        axios.post("http://localhost:8080/rest/add/outcomes/"+ localStorage.getItem("login"), dataCosts)
+        axios.post("https://chartsio.herokuapp.com/rest/add/outcomes/"+ localStorage.getItem("login"), dataCosts)
             .then(res => {
                 if(res.data != null){
                     this.setState({"show": true});
@@ -133,7 +133,7 @@ export default class NewCharts extends Component{
             date: this.state.date,
         };
 
-        axios.put("http://localhost:8080/rest/update/in/"+ localStorage.getItem("login") +"/"+data.id, data)
+        axios.put("https://chartsio.herokuapp.com/rest/update/in/"+ localStorage.getItem("login") +"/"+data.id, data)
             .then(res => {
                 if(res.data != null){
                     this.setState({"myShow": true, "method":"put"});
@@ -155,7 +155,7 @@ export default class NewCharts extends Component{
             date: this.state.dateC,
         };
 
-        axios.put("http://localhost:8080/rest/update/out/"+ localStorage.getItem("login") +"/"+data.id, data)
+        axios.put("https://chartsio.herokuapp.com/rest/update/out/"+ localStorage.getItem("login") +"/"+data.id, data)
             .then(res => {
                 if(res.data != null){
                     this.setState({"show": true, "method":"put"});
