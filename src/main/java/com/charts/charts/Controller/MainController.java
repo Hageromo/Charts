@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/rest")
-@CrossOrigin("http://localhost:3000")   //Don't do that
+@CrossOrigin("*")   //Don't do that
 public class MainController {
 
     private final UserService userService;
